@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct Settings: View {
+    
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)
                 .ignoresSafeArea() // Ignore just for the color
@@ -27,14 +28,19 @@ struct Settings: View {
                             .clipShape(Capsule())
 
                         }
-                        HStack(alignment: .top) {
+                        HStack(alignment: .center) {
                             Text("Name: ")
-                            TextEditor(text: /*@START_MENU_TOKEN@*/.constant("Placeholder")/*@END_MENU_TOKEN@*/)
+                            TextEditor(text: .constant("Ken"))
                                 .frame(height: 30.0)
                         }
-                        HStack(alignment: .top) {
+                        HStack(alignment: .center) {
                             Text("Profile Picture: ")
-                            TextEditor(text: /*@START_MENU_TOKEN@*/.constant("Placeholder")/*@END_MENU_TOKEN@*/)
+                            TextEditor(text: .constant("Ken.jpeg"))
+                                .frame(height: 30.0)
+                        }
+                        HStack (alignment: .center) {
+                            Text("Date of Birth: ")
+                            TextEditor(text: .constant("August 9, 2000"))
                                 .frame(height: 30.0)
                         }
                         Spacer()
