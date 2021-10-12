@@ -54,9 +54,9 @@ struct CreateEntryView: View {
     @State var EntryDate = Date();
     @State var content = "Main Content";
     var body: some View {
-        ZStack{
             Color.baseGreen.ignoresSafeArea()
-            VStack(alignment: .center) {
+                .overlay(
+            VStack(alignment: .leading) {
                 HStack(alignment: .top) {
                     Button(action:{
                         //TODO: Add Entry Funtionality
@@ -87,7 +87,7 @@ struct CreateEntryView: View {
                         .shadow(color: Color.black, radius: 4, x: 2, y: 2)
                         .shadow(color: Color.white, radius: 3, x: -15, y: -2)
                         .padding(.horizontal, 4.0)
-                        .frame(height: 300.0)
+//                        .frame(height: 300.0)
                         .cornerRadius(16)
                         .overlay(
                             TextEditor(text: $content)
@@ -97,11 +97,24 @@ struct CreateEntryView: View {
                         )
 
                 }
+                HStack {
+                    Button(action: {}) {
+                        Text("Save")
+                            .foregroundColor(Color.black)
+                            .padding(.trailing)
+                            .font(.title)
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .clipShape(Capsule())
+                }
+                Spacer()
             }
+            .padding()
+        )
         }
 
     }
-}
 
 struct CreateEntry_Previews: PreviewProvider {
     static var previews: some View {
