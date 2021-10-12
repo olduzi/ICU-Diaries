@@ -9,6 +9,9 @@ import SwiftUI
 
 struct LogOut: View {
     var body: some View {
+        Color(red: 0.65, green: 0.76, blue: 0.69)
+                .ignoresSafeArea() // Ignore just for the color
+                .overlay(
         VStack {
             ICUDiaryText()
             LogoutQuestionText()
@@ -28,6 +31,7 @@ struct LogOut: View {
                            LogoutNoButton()
                         }
         }
+                )
     }
 }
 
@@ -82,5 +86,11 @@ struct LogoutNoButton : View {
                 .cornerRadius(15.0)
         }
         .padding()
+    }
+}
+
+struct Logout_Previews: PreviewProvider {
+    static var previews: some View {
+        LogOut()
     }
 }

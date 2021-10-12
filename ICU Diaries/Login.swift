@@ -12,17 +12,20 @@ struct Login : View {
     @State var username: String = ""
     @State var password: String = ""
     var body: some View {
+        Color(red: 0.65, green: 0.76, blue: 0.69)
+                .ignoresSafeArea() // Ignore just for the color
+                .overlay(
         VStack {
             WelcomeText()
             UserImage()
             TextField("Username", text: $username)
                             .padding()
-                            .background(Color(red: 0.98, green: 0.49, blue: 0.49))
+                .background(Color.white)
                             .cornerRadius(5.0)
                             .padding(.bottom, 20)
             SecureField("Password", text: $password)
                             .padding()
-                            .background(Color(red: 0.98, green: 0.49, blue: 0.49))
+                .background(Color.white)
                             .cornerRadius(5.0)
                             .padding(.bottom, 20)
             Button(action: {print("Button tapped")}) {
@@ -30,6 +33,7 @@ struct Login : View {
                         }
         }
         .padding()
+        )
     }
 }
 
@@ -70,5 +74,11 @@ struct LoginButton : View {
                 .cornerRadius(15.0)
         }
         .padding()
+    }
+}
+
+struct Login_Previews: PreviewProvider {
+    static var previews: some View {
+        Login()
     }
 }
