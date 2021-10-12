@@ -1,0 +1,579 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F8EBE7CE271641D200EA21EE /* ICU_DiariesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EBE7CD271641D200EA21EE /* ICU_DiariesApp.swift */; };
+		F8EBE7D0271641D200EA21EE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EBE7CF271641D200EA21EE /* ContentView.swift */; };
+		F8EBE7D2271641D500EA21EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8EBE7D1271641D500EA21EE /* Assets.xcassets */; };
+		F8EBE7D5271641D500EA21EE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8EBE7D4271641D500EA21EE /* Preview Assets.xcassets */; };
+		F8EBE7E0271641D600EA21EE /* ICU_DiariesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EBE7DF271641D600EA21EE /* ICU_DiariesTests.swift */; };
+		F8EBE7EB271641D600EA21EE /* ICU_DiariesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EBE7EA271641D600EA21EE /* ICU_DiariesUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F8EBE7DC271641D600EA21EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8EBE7C2271641D200EA21EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8EBE7C9271641D200EA21EE;
+			remoteInfo = "ICU Diaries";
+		};
+		F8EBE7E7271641D600EA21EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8EBE7C2271641D200EA21EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8EBE7C9271641D200EA21EE;
+			remoteInfo = "ICU Diaries";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F8EBE7CA271641D200EA21EE /* ICU Diaries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ICU Diaries.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8EBE7CD271641D200EA21EE /* ICU_DiariesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICU_DiariesApp.swift; sourceTree = "<group>"; };
+		F8EBE7CF271641D200EA21EE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F8EBE7D1271641D500EA21EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F8EBE7D4271641D500EA21EE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F8EBE7D6271641D600EA21EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8EBE7DB271641D600EA21EE /* ICU DiariesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ICU DiariesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8EBE7DF271641D600EA21EE /* ICU_DiariesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICU_DiariesTests.swift; sourceTree = "<group>"; };
+		F8EBE7E1271641D600EA21EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8EBE7E6271641D600EA21EE /* ICU DiariesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ICU DiariesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8EBE7EA271641D600EA21EE /* ICU_DiariesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICU_DiariesUITests.swift; sourceTree = "<group>"; };
+		F8EBE7EC271641D600EA21EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F8EBE7C7271641D200EA21EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8EBE7D8271641D600EA21EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8EBE7E3271641D600EA21EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F8EBE7C1271641D200EA21EE = {
+			isa = PBXGroup;
+			children = (
+				F8EBE7CC271641D200EA21EE /* ICU Diaries */,
+				F8EBE7DE271641D600EA21EE /* ICU DiariesTests */,
+				F8EBE7E9271641D600EA21EE /* ICU DiariesUITests */,
+				F8EBE7CB271641D200EA21EE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F8EBE7CB271641D200EA21EE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8EBE7CA271641D200EA21EE /* ICU Diaries.app */,
+				F8EBE7DB271641D600EA21EE /* ICU DiariesTests.xctest */,
+				F8EBE7E6271641D600EA21EE /* ICU DiariesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8EBE7CC271641D200EA21EE /* ICU Diaries */ = {
+			isa = PBXGroup;
+			children = (
+				F8EBE7CD271641D200EA21EE /* ICU_DiariesApp.swift */,
+				F8EBE7CF271641D200EA21EE /* ContentView.swift */,
+				F8EBE7D1271641D500EA21EE /* Assets.xcassets */,
+				F8EBE7D6271641D600EA21EE /* Info.plist */,
+				F8EBE7D3271641D500EA21EE /* Preview Content */,
+			);
+			path = "ICU Diaries";
+			sourceTree = "<group>";
+		};
+		F8EBE7D3271641D500EA21EE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F8EBE7D4271641D500EA21EE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F8EBE7DE271641D600EA21EE /* ICU DiariesTests */ = {
+			isa = PBXGroup;
+			children = (
+				F8EBE7DF271641D600EA21EE /* ICU_DiariesTests.swift */,
+				F8EBE7E1271641D600EA21EE /* Info.plist */,
+			);
+			path = "ICU DiariesTests";
+			sourceTree = "<group>";
+		};
+		F8EBE7E9271641D600EA21EE /* ICU DiariesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F8EBE7EA271641D600EA21EE /* ICU_DiariesUITests.swift */,
+				F8EBE7EC271641D600EA21EE /* Info.plist */,
+			);
+			path = "ICU DiariesUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F8EBE7C9271641D200EA21EE /* ICU Diaries */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8EBE7EF271641D600EA21EE /* Build configuration list for PBXNativeTarget "ICU Diaries" */;
+			buildPhases = (
+				F8EBE7C6271641D200EA21EE /* Sources */,
+				F8EBE7C7271641D200EA21EE /* Frameworks */,
+				F8EBE7C8271641D200EA21EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ICU Diaries";
+			productName = "ICU Diaries";
+			productReference = F8EBE7CA271641D200EA21EE /* ICU Diaries.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F8EBE7DA271641D600EA21EE /* ICU DiariesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8EBE7F2271641D600EA21EE /* Build configuration list for PBXNativeTarget "ICU DiariesTests" */;
+			buildPhases = (
+				F8EBE7D7271641D600EA21EE /* Sources */,
+				F8EBE7D8271641D600EA21EE /* Frameworks */,
+				F8EBE7D9271641D600EA21EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F8EBE7DD271641D600EA21EE /* PBXTargetDependency */,
+			);
+			name = "ICU DiariesTests";
+			productName = "ICU DiariesTests";
+			productReference = F8EBE7DB271641D600EA21EE /* ICU DiariesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F8EBE7E5271641D600EA21EE /* ICU DiariesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8EBE7F5271641D600EA21EE /* Build configuration list for PBXNativeTarget "ICU DiariesUITests" */;
+			buildPhases = (
+				F8EBE7E2271641D600EA21EE /* Sources */,
+				F8EBE7E3271641D600EA21EE /* Frameworks */,
+				F8EBE7E4271641D600EA21EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F8EBE7E8271641D600EA21EE /* PBXTargetDependency */,
+			);
+			name = "ICU DiariesUITests";
+			productName = "ICU DiariesUITests";
+			productReference = F8EBE7E6271641D600EA21EE /* ICU DiariesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F8EBE7C2271641D200EA21EE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					F8EBE7C9271641D200EA21EE = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					F8EBE7DA271641D600EA21EE = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = F8EBE7C9271641D200EA21EE;
+					};
+					F8EBE7E5271641D600EA21EE = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = F8EBE7C9271641D200EA21EE;
+					};
+				};
+			};
+			buildConfigurationList = F8EBE7C5271641D200EA21EE /* Build configuration list for PBXProject "ICU Diaries" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F8EBE7C1271641D200EA21EE;
+			productRefGroup = F8EBE7CB271641D200EA21EE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F8EBE7C9271641D200EA21EE /* ICU Diaries */,
+				F8EBE7DA271641D600EA21EE /* ICU DiariesTests */,
+				F8EBE7E5271641D600EA21EE /* ICU DiariesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F8EBE7C8271641D200EA21EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8EBE7D5271641D500EA21EE /* Preview Assets.xcassets in Resources */,
+				F8EBE7D2271641D500EA21EE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8EBE7D9271641D600EA21EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8EBE7E4271641D600EA21EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F8EBE7C6271641D200EA21EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8EBE7D0271641D200EA21EE /* ContentView.swift in Sources */,
+				F8EBE7CE271641D200EA21EE /* ICU_DiariesApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8EBE7D7271641D600EA21EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8EBE7E0271641D600EA21EE /* ICU_DiariesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8EBE7E2271641D600EA21EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8EBE7EB271641D600EA21EE /* ICU_DiariesUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F8EBE7DD271641D600EA21EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8EBE7C9271641D200EA21EE /* ICU Diaries */;
+			targetProxy = F8EBE7DC271641D600EA21EE /* PBXContainerItemProxy */;
+		};
+		F8EBE7E8271641D600EA21EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8EBE7C9271641D200EA21EE /* ICU Diaries */;
+			targetProxy = F8EBE7E7271641D600EA21EE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F8EBE7ED271641D600EA21EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F8EBE7EE271641D600EA21EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F8EBE7F0271641D600EA21EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"ICU Diaries/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "ICU Diaries/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "olduzi.ICU-Diaries";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F8EBE7F1271641D600EA21EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"ICU Diaries/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "ICU Diaries/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "olduzi.ICU-Diaries";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F8EBE7F3271641D600EA21EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "ICU DiariesTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "olduzi.ICU-DiariesTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ICU Diaries.app/ICU Diaries";
+			};
+			name = Debug;
+		};
+		F8EBE7F4271641D600EA21EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "ICU DiariesTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "olduzi.ICU-DiariesTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ICU Diaries.app/ICU Diaries";
+			};
+			name = Release;
+		};
+		F8EBE7F6271641D600EA21EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "ICU DiariesUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "olduzi.ICU-DiariesUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "ICU Diaries";
+			};
+			name = Debug;
+		};
+		F8EBE7F7271641D600EA21EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "ICU DiariesUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "olduzi.ICU-DiariesUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "ICU Diaries";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F8EBE7C5271641D200EA21EE /* Build configuration list for PBXProject "ICU Diaries" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8EBE7ED271641D600EA21EE /* Debug */,
+				F8EBE7EE271641D600EA21EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8EBE7EF271641D600EA21EE /* Build configuration list for PBXNativeTarget "ICU Diaries" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8EBE7F0271641D600EA21EE /* Debug */,
+				F8EBE7F1271641D600EA21EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8EBE7F2271641D600EA21EE /* Build configuration list for PBXNativeTarget "ICU DiariesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8EBE7F3271641D600EA21EE /* Debug */,
+				F8EBE7F4271641D600EA21EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8EBE7F5271641D600EA21EE /* Build configuration list for PBXNativeTarget "ICU DiariesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8EBE7F6271641D600EA21EE /* Debug */,
+				F8EBE7F7271641D600EA21EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F8EBE7C2271641D200EA21EE /* Project object */;
+}
