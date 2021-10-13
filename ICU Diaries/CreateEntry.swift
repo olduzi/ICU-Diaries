@@ -49,6 +49,7 @@ struct TextFieldWrap: View {
 }
 
 struct CreateEntryView: View {
+    @Binding var rootIsActive : Bool
     @State var fontSize = 11;
     @State var title = "Enter Your Title";
     @State var EntryDate = Date();
@@ -69,7 +70,7 @@ struct CreateEntryView: View {
                     Spacer()
                 }
                 HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
-                    Text("Title").font(.title2).fontWeight(.regular)
+                    Text("Title: ").font(.title2).fontWeight(.regular)
                     TextFieldWrap(textField: TextField(title, text: $title))
                 })
                 HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
@@ -78,8 +79,12 @@ struct CreateEntryView: View {
                             .font(.title2)
                                 }
                 })
+                .padding(.top, 10)
+                .padding(.bottom, 10)
                 VStack(alignment: .leading) { // Entry Box
-                    Text("Enter Content: ").font(.title2).fontWeight(.bold)
+                    Text("Enter Content: ")
+                        .font(.title2).fontWeight(.bold)
+                        .padding(.bottom, 10)
                     RoundedRectangle(cornerRadius: 10)
                         .fill(Color.white)
                         .padding(.bottom, -150)
@@ -93,16 +98,18 @@ struct CreateEntryView: View {
                             TextEditor(text: $content)
                                 .foregroundColor(.primary)
                                 .padding(.horizontal)
-                                .navigationTitle("About you")
+                                .font(.title2)
+//                                .navigationTitle("About you")
                         )
 
                 }
+                .padding(.bottom, 10)
                 HStack {
                     Button(action: {}) {
                         Text("Save")
                             .foregroundColor(Color.black)
-                            .padding(.trailing)
-                            .font(.title)
+                            .font(.title2)
+                            .frame(width: 100)
                     }
                     .padding()
                     .background(Color.white)
@@ -110,16 +117,16 @@ struct CreateEntryView: View {
                 }
                 Spacer()
             }
+            .offset(y: -40)
             .padding()
         )
-        }
-
-    }
-
-struct CreateEntry_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            CreateEntryView()
-        }
     }
 }
+
+//struct CreateEntry_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            CreateEntryView()
+//        }
+//    }
+//}

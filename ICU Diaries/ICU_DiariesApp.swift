@@ -11,7 +11,7 @@ import SwiftUI
 struct ICU_DiariesApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Login()
         }
     }
 }

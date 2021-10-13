@@ -13,6 +13,8 @@ struct Note: Identifiable {
 }
 
 struct Dashboard: View {
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var rootIsActive : Bool
     @State private var date = Date()
     @State private var user = "Ken"
     
@@ -45,12 +47,6 @@ struct Dashboard: View {
     }
     
     var body: some View {
-//        NavigationView {
-//            VStack(alignment: .leading){
-//                Text("I don't get it")
-//            }
-//        }
-//        .navigationTitle("Hello!")
         Color(red: 0.65, green: 0.76, blue: 0.69)
             .ignoresSafeArea()
             .overlay(
@@ -59,15 +55,18 @@ struct Dashboard: View {
                         Text("Good \(getTimeOfDay()) \(user)!")
                             .font(.largeTitle)
                             .bold()
-                            .padding()
                         Spacer()
-                        Image("KennethChou")
-                            .resizable()
-                            .frame(width: 60.16, height: 40.0)
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color.white, lineWidth: 2))
-                            .padding()
+                        NavigationLink(destination: Settings(rootIsActive: self.$rootIsActive)) {
+                            Image("KennethChou")
+                                .resizable()
+                                .frame(width: 100, height: 66.6)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                                .offset(x: -10)
+                        }
+                        .isDetailLink(false)
                     }
+                    .padding()
                     HStack() {
                         VStack() {
                             // Date Picker and List
@@ -80,10 +79,20 @@ struct Dashboard: View {
                                 Text(note.title)
                             }
                             Spacer()
-                            Button("Create new entry +", action: { createNote()
-                            })
-                            .buttonStyle(DefaultButtonStyle())
-                            .padding()
+                            NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive)) {
+                                Text("Create new entry +")
+                                .font(.headline)
+                                .foregroundColor(.blue)
+                                .padding()
+                                .frame(width: 390, height: 60)
+                                .background(Color.white)
+                                .cornerRadius(15.0)
+                            }
+                            .isDetailLink(false)
+    //                                Button("Create new entry +", action: { createNote()
+    //                                })
+    //                                .buttonStyle(DefaultButtonStyle())
+    //                                .padding()
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         VStack() {
@@ -97,25 +106,28 @@ struct Dashboard: View {
                                 .resizable()
                                 .frame(width: 355.25, height: 369.95)
                                 .cornerRadius(20)
-                                .offset(y: -130)
+                                .offset(y: -80)
                             Spacer()
                             Image("Weather")
                                 .resizable()
                                 .frame(width: 356.3, height: 167.3)
                                 .cornerRadius(20)
-                                .offset(y: -250)
+                                .offset(y: -160)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
                     }
                     .padding()
                     Spacer()
                 }
+                .navigationBarBackButtonHidden(true)
+                .offset(x: 10)
+                .offset(y: -40)
             )
     }
 }
 
-struct Dashboard_Previews: PreviewProvider {
-    static var previews: some View {
-        Dashboard()
-    }
-}
+//struct Dashboard_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Dashboard()
+//    }
+//}
