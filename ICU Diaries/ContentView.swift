@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     
-//    @State var weather = WeatherRequest(city: "Ann Arbor")
-    
+//    var quotes = loadJson(filename: "quotes.json")!
+    var temp = ["hello", "hi"]
     
     var body: some View {
-        Text("Hello, world!")
+        Text(temp[0])
             .padding()
     }
 }
