@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+//    @State var weather = WeatherRequest(city: "Ann Arbor")
+    
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
