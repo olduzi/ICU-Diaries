@@ -7,14 +7,20 @@
 
 import SwiftUI
 
+//example
 struct ContentView: View {
     
-//    var quotes = loadJson(filename: "quotes.json")!
-    var temp = ["hello", "hi"]
+    @State var books = [Book]()
     
     var body: some View {
-        Text(temp[0])
-            .padding()
+        List(books) { book in
+            Text("\(book.author)")
+        }
+            .onAppear() {
+                Api().loadData { (books) in
+                    self.books = books
+                }
+            }.navigationTitle("Book List")
     }
 }
 
