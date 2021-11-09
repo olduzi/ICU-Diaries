@@ -17,7 +17,7 @@ Method ---------------------------------------------------URL
 1: POST                  "http://68.58.243.157:8000/api/diary/new/"  [Link](http://68.58.243.157:8000/api/diary/new/)  
 ### Requires: sender_id, receiver_id, created_time(optional), title, content  
 ### Goal: create a diary entry  
-### Returns HTTP_201 if success, errors otherwise  
+### Returns HTTP_201 if success, HTTP_400 if failed.
   
 2: GET                   ""http://68.58.243.157:8000/api/diary/testing/" [Link](http://68.58.243.157:8000/api/diary/testing/)"  
 ### Requires: None  
