@@ -8,21 +8,21 @@
 *don't forget to change device to ipad air when previewing
 
 
-##**ICU_Diary_RESTful_API**
+## **ICU_Diary_RESTful_API**
 web_host: 68.58.243.157
 database_endpoint: icudiary.c43yxbbxirw2.us-east-2.rds.amazonaws.com
 [Github_repo](https://github.com/slingjun/ICU_Diary_REST_Services)
 
 Method ---------------------------------------------------URL
 1: POST                  "http://68.58.243.157:8000/api/diary/new/" [Link](http://68.58.243.157:8000/api/diary/new/)
-###Requires: sender_id, receiver_id, created_time(optional), title, content
-###Goal: create a diary entry
+### Requires: sender_id, receiver_id, created_time(optional), title, content
+### Goal: create a diary entry
 ###Returns HTTP_201 if success, errors otherwise
 
 2: GET                   ""http://68.58.243.157:8000/api/diary/testing/" [Link](http://68.58.243.157:8000/api/diary/testing/)"
-###Requires: None
-###Goal: get every diary entry in the database in **JSON Format**
-###Returns: 
+### Requires: None
+### Goal: get every diary entry in the database in **JSON Format**
+### Returns: 
 {
     "contents": [
         {
