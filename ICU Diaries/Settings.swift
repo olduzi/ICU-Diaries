@@ -15,7 +15,7 @@ struct Settings: View {
                 .ignoresSafeArea() // Ignore just for the color
                 .overlay(
                     VStack(alignment: .leading) {
-                        HStack(alignment: .top) {
+                        HStack(alignment: .center) {
                             Text("Edit Profile")
                                 .font(.largeTitle)
                                 .bold()
@@ -28,7 +28,6 @@ struct Settings: View {
                                     .padding()
                                     .background(Color(red: 0.98, green: 0.49, blue: 0.49))
                                     .clipShape(Capsule())
-                                    .offset(y: -10)
                             }
                             .isDetailLink(false)
                         }
@@ -89,10 +88,10 @@ struct Settings: View {
     }
 }
 
-//struct Settings_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            Settings()
-//        }
-//    }
-//}
+#if DEBUG
+struct Settings_Previews : PreviewProvider {
+    static var previews: some View {
+        Settings(rootIsActive: .constant(false))
+    }
+}
+#endif
