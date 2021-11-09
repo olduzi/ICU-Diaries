@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 struct ResponseData: Codable {
@@ -26,13 +27,44 @@ class Api : ObservableObject{
             return
         }
         URLSession.shared.dataTask(with: url) { data, response, error in
-            print(data as Any)
             let response = try! JSONDecoder().decode(ResponseData.self, from: data!)
-            print(response)
             DispatchQueue.main.async {
                 completion(response.quotes)
             }
         }.resume()
         
+    }
+}
+
+struct QuotesView: View {
+    @State var quotes = [Quote]()
+    @State var quote = ""
+    @State var author = ""
+    
+    let randomInt = Int.random(in: 0..<10)
+    
+    var body: some View {
+        VStack {
+            Text("\"\(quote)\" - \(author)")
+                .padding()
+                .onAppear() {
+                    Api().loadData { (quotes) in
+                        self.quotes = quotes
+                        self.quote = quotes[randomInt].quote
+                        self.author = quotes[randomInt].author
+                    }
+                }
+                .frame(width: 353.15, height: 164.5)
+                .background(Color.black)
+                .foregroundColor(Color.white)
+                .cornerRadius(10.0)
+                
+        }
+    }
+}
+
+struct QuotesView_Previews: PreviewProvider {
+    static var previews: some View {
+        QuotesView()
     }
 }
