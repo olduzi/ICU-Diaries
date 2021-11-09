@@ -10,17 +10,17 @@ import SwiftUI
 //example
 struct ContentView: View {
     
-    @State var books = [Book]()
+    @State var quotes = [Quote]()
     
     var body: some View {
-        List(books) { book in
-            Text("\(book.author)")
+        List(quotes) { quote in
+            Text("\(quote.author)")
         }
             .onAppear() {
-                Api().loadData { (books) in
-                    self.books = books
+                Api().loadData { (quotes) in
+                    self.quotes = quotes
                 }
-            }.navigationTitle("Book List")
+            }.navigationTitle("Quote List")
     }
 }
 

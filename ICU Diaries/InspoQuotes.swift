@@ -8,50 +8,29 @@
 import Foundation
 
 
-struct ResponseData: Decodable {
-    var quote: [Quote]
+struct ResponseData: Codable {
+    var quotes: [Quote]
 }
-struct Quote : Decodable {
+struct Quote : Codable, Identifiable {
+    let id = UUID()
     var quote: String
     var author: String
 }
 
-//example
-struct Book: Codable, Identifiable {
-    let id = UUID()
-    var author: String
-    var email: String
-    var title: String
-}
-
-func loadJson(filename fileName: String) -> [Quote]? {
-    if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
-        do {
-            let data = try Data(contentsOf: url)
-            let decoder = JSONDecoder()
-            let jsonData = try decoder.decode(ResponseData.self, from: data)
-            return jsonData.quote
-        } catch {
-            print("error:\(error)")
-        }
-    }
-    return nil
-}
-
-//example
 class Api : ObservableObject{
-    @Published var books = [Book]()
+    @Published var quotes = [Quote]()
     
-    func loadData(completion:@escaping ([Book]) -> ()) {
-        guard let url = URL(string: "https://training.xcelvations.com/data/books.json") else {
+    func loadData(completion:@escaping ([Quote]) -> ()) {
+        guard let url = URL(string: "https://gist.githubusercontent.com/nasrulhazim/54b659e43b1035215cd0ba1d4577ee80/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json") else {
             print("Invalid url...")
             return
         }
         URLSession.shared.dataTask(with: url) { data, response, error in
-            let books = try! JSONDecoder().decode([Book].self, from: data!)
-            print(books)
+            print(data as Any)
+            let response = try! JSONDecoder().decode(ResponseData.self, from: data!)
+            print(response)
             DispatchQueue.main.async {
-                completion(books)
+                completion(response.quotes)
             }
         }.resume()
         
