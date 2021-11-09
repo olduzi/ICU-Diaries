@@ -97,10 +97,7 @@ struct Dashboard: View {
                         .frame(minWidth: 0, maxWidth: .infinity)
                         VStack() {
                             // Widgets
-                            Image("InspirationalQuote")
-                                .resizable()
-                                .frame(width: 353.15, height: 164.5)
-                                .cornerRadius(20)
+                            QuotesView()
                             Spacer()
                             Image("News")
                                 .resizable()
