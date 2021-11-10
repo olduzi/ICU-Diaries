@@ -38,6 +38,10 @@ struct Login : View {
                     .cornerRadius(15.0)
                 }
                 .isDetailLink(false)
+                .simultaneousGesture(TapGesture().onEnded{
+                    self.username = ""
+                    self.password = ""
+                })
             }
             .offset(y: -100)
             .padding()
