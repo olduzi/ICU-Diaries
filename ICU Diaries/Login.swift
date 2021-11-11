@@ -42,6 +42,13 @@ struct Login : View {
                     self.username = ""
                     self.password = ""
                 })
+                HStack() {
+                    Text("New user?")
+                    NavigationLink(destination: CreateUserView(rootIsActive: self.$isActive), isActive: self.$isActive) {
+                        Text("Register here!")
+                    }
+                }
+                .padding(.top)
             }
             .offset(y: -100)
             .padding()

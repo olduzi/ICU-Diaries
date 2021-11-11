@@ -77,13 +77,15 @@ struct Dashboard: View {
                                 selection: $date,
                                 displayedComponents: [.date]
                             )
-                            List(entries) { entry in
-                                Text("\(entry.title)")
+                            List(entries, id: \.id) { entry in
+                                NavigationLink(destination: DiaryEntryView(rootIsActive: self.$rootIsActive, entry: entry, selectedDate: $date, userName: $user)) {
+                                    Text("\(entry.title)")
+                                }
                             }
                                 .onAppear() {
                                     GetDiary().loadData { (entries) in
                                         self.entries = entries             }
-                                }.navigationTitle("Quote List")
+                                }
                             Spacer()
                             NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive)) {
                                 Text("Create new entry +")
