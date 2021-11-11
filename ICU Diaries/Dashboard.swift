@@ -112,12 +112,8 @@ struct Dashboard: View {
                                 .frame(width: 355.25, height: 369.95)
                                 .cornerRadius(20)
                                 .offset(y: -80)
+                            WeatherView()
                             Spacer()
-                            Image("Weather")
-                                .resizable()
-                                .frame(width: 356.3, height: 167.3)
-                                .cornerRadius(20)
-                                .offset(y: -160)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
                     }
