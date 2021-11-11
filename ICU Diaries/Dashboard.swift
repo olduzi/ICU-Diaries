@@ -46,6 +46,8 @@ struct Dashboard: View {
         notes.append(Note(title: "New entry"))
     }
     
+    @State var entries = [Entry]()
+    
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)
             .ignoresSafeArea()
@@ -75,9 +77,13 @@ struct Dashboard: View {
                                 selection: $date,
                                 displayedComponents: [.date]
                             )
-                            List(notes, id: \.id) { note in
-                                Text(note.title)
+                            List(entries) { entry in
+                                Text("\(entry.title)")
                             }
+                                .onAppear() {
+                                    GetDiary().loadData { (entries) in
+                                        self.entries = entries             }
+                                }.navigationTitle("Quote List")
                             Spacer()
                             NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive)) {
                                 Text("Create new entry +")
