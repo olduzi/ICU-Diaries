@@ -15,7 +15,7 @@ database_endpoint: icudiary.c43yxbbxirw2.us-east-2.rds.amazonaws.com
 
 Method ---------------------------------------------------URL  
 1: POST                  "http://68.58.243.157:8000/api/diary/new/"  [Link](http://68.58.243.157:8000/api/diary/new/)  
-### Requires: sender_id, receiver_id, created_time(optional), title, content  
+### Requires: sender name, receiver name, created_time(optional), title, content  
 ### Goal: create a diary entry  
 ### Returns HTTP_201 if success, HTTP_400 if failed.
   
