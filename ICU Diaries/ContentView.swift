@@ -10,8 +10,8 @@ import SwiftUI
 //example
 struct ContentView: View {
     
-    @State var entries = Entry(diary_id: 13, sender_id: 13, receiver_id: 13, created_time: "time", title: "Test Post", content: "Success")
-    @State var content = "hello"
+    @State var entries = Entry(sender: "olduzi", reciever: "olduzi", title: "Test Post", content: "Successful Post")
+    @State var content = "hi"
     
     var body: some View {
         Text("\(content)")

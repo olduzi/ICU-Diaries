@@ -79,7 +79,7 @@ struct Dashboard: View {
                             )
                             List(entries, id: \.id) { entry in
                                 NavigationLink(destination: DiaryEntryView(rootIsActive: self.$rootIsActive, entry: entry, selectedDate: $date, userName: $user)) {
-                                    Text("\(entry.title)")
+                                    Text("\(entry.title!)")
                                 }
                             }
                                 .onAppear() {

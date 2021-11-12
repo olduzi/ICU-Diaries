@@ -35,7 +35,7 @@ struct DiaryEntryView: View {
                                 displayedComponents: [.date]
                             )
                             List(entries) { entry in
-                                Text("\(entry.title)")
+                                Text("\(entry.title!)")
                             }
                                 .onAppear() {
                                     GetDiary().loadData { (entries) in
@@ -56,7 +56,7 @@ struct DiaryEntryView: View {
                         .frame(minWidth: 0, maxWidth: .infinity)
                         VStack() {
                             Spacer()
-                            Text("\(entry.content)")
+                            Text("\(entry.content!)")
                             Spacer()
                             NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive)) {
                                 Text("Edit entry")
