@@ -10,17 +10,15 @@ import SwiftUI
 //example
 struct ContentView: View {
     
-    @State var entries = [Entry]()
+    @State var entries = Entry(diary_id: 13, sender_id: 13, receiver_id: 13, created_time: "time", title: "Test Post", content: "Success")
     @State var content = "hello"
     
     var body: some View {
-//        List(entries) { entry in
-//            Text("\(entry.content)")
-//        }
         Text("\(content)")
             .onAppear() {
-                GetDiary().loadData { (data) in
-                    self.content = data             }
+                GetDiary().sendData(entry: entries) { (response) in
+                    self.content = response
+                }
             }.navigationTitle("Quote List")
     }
 }
