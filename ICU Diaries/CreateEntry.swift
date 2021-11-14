@@ -7,104 +7,47 @@
 
 import SwiftUI
 
-
-extension Color {
-    static let baseGreen = Color(red: 166 / 255, green: 193 / 255, blue: 177 / 255)
-}
-
-
-struct customViewModifier: ViewModifier {
-    var roundedCornes: CGFloat
-    var textColor: Color
-    
-    func body(content: Content) -> some View {
-        content
-            .padding()
-            .background(Color.white)
-            .cornerRadius(roundedCornes)
-            .padding(3)
-            .foregroundColor(textColor)
-            .overlay(RoundedRectangle(cornerRadius: roundedCornes))
-            .font(.custom("Open Sans", size: 11))
-            .shadow(radius: 10)
-    }
-}
-
-
-struct TextFieldWrap: View {
-    var textField: TextField<Text>
-    var body: some View {
-        HStack {
-            textField.font(.title2)
-                .foregroundColor(Color.black)
-            }
-        .padding(.trailing, 6.0)
-            .foregroundColor(Color.baseGreen)
-        .background(Color.white)
-            .cornerRadius(6)
-            .shadow(color: Color.white, radius: 3, x: 2, y: 2)
-            .shadow(color: Color.white, radius: 3, x: -2, y: -2)
-            
-        }
-}
-
 struct CreateEntryView: View {
     @Binding var rootIsActive : Bool
-    @State var fontSize = 11;
-    @State var title = "Enter Your Title";
-    @State var EntryDate = Date();
-    @State var content = "Main Content";
-    var body: some View {
-            Color.baseGreen.ignoresSafeArea()
-                .overlay(
-            VStack(alignment: .leading) {
-                HStack(alignment: .top) {
-                    Button(action:{
-                        //TODO: Add Entry Funtionality
-                    }) {
-                        Text("Create New Entry:").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).fontWeight(.bold)
-                    }
-                    .padding(.bottom)
-                    .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                    .foregroundColor(.black)
-                    Spacer()
-                }
-                HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
-                    Text("Title: ").font(.title2).fontWeight(.regular)
-                    TextFieldWrap(textField: TextField(title, text: $title))
-                })
-                HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
-                    DatePicker(selection: $EntryDate, in: ...Date(), displayedComponents: .date) {
-                        Text("Select a date")
-                            .font(.title2)
-                                }
-                })
-                .padding(.top, 10)
-                .padding(.bottom, 10)
-                VStack(alignment: .leading) { // Entry Box
-                    Text("Enter Content: ")
-                        .font(.title2).fontWeight(.bold)
-                        .padding(.bottom, 10)
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.white)
-                        .padding(.bottom, -150)
-                        .padding(.top, 50).offset(x: 0, y: -50)
-                        .shadow(color: Color.black, radius: 4, x: 2, y: 2)
-                        .shadow(color: Color.white, radius: 3, x: -15, y: -2)
-                        .padding(.horizontal, 4.0)
-//                        .frame(height: 300.0)
-                        .cornerRadius(16)
-                        .overlay(
-                            TextEditor(text: $content)
-                                .foregroundColor(.primary)
-                                .padding(.horizontal)
-                                .font(.title2)
-//                                .navigationTitle("About you")
-                        )
 
-                }
-                .padding(.bottom, 10)
-                HStack {
+    @State var title = "";
+    @State var date = Date();
+    @State var content = "";
+    
+    var body: some View {
+        Color(red: 0.65, green: 0.76, blue: 0.69)
+            .ignoresSafeArea()
+            .overlay(
+                VStack(alignment: .leading) {
+                    Text("Create New Entry:")
+                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .fontWeight(.bold)
+                        .padding(.bottom)
+                    HStack() {
+                        Text("Title: ")
+                            .font(.title2)
+                            .fontWeight(.regular)
+                        TextField("", text: $title)
+                            .font(.title2)
+                            .padding(10)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                    }
+                    DatePicker(
+                        "Date:",
+                        selection: $date,
+                        displayedComponents: [.date]
+                    )
+                    .font(.title2)
+                    .padding(.bottom)
+                    Text("Content: ")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .padding(.bottom)
+                    TextEditor(text: $content)
+                        .font(.title2)
+                        .cornerRadius(10)
+                        .padding(.bottom)
                     Button(action: {}) {
                         Text("Save")
                             .foregroundColor(Color.black)
@@ -115,18 +58,17 @@ struct CreateEntryView: View {
                     .background(Color.white)
                     .clipShape(Capsule())
                 }
-                Spacer()
-            }
-            .offset(y: -40)
-            .padding()
-        )
+                .padding()
+            )
     }
 }
 
-//struct CreateEntry_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            CreateEntryView()
-//        }
-//    }
-//}
+#if DEBUG
+struct CreateEntry_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            CreateEntryView(rootIsActive: .constant(false))
+        }
+    }
+}
+#endif

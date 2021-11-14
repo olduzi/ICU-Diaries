@@ -7,45 +7,40 @@
 
 import SwiftUI
 
-struct User : Codable {
-    var name : String
-    var proPic : String
-    var dob : Date
-}
-
 struct CreateUserView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var rootIsActive : Bool
     
-    @State private var newUser = User(name: "", proPic: "", dob: Date()) // initialize differently
+    @State private var newUser = User(firstName: "", lastName: "", username: "", password: "", email: "", proPic: "") // initialize differently
+    
+    @State var confirmPassword = ""
     
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)
                 .ignoresSafeArea() // Ignore just for the color
                 .overlay(
                     VStack(alignment: .leading) {
-                        HStack(alignment: .top) {
-                            Text("Create Profile")
-                                .font(.largeTitle)
-                                .bold()
-                            Spacer()
-                            NavigationLink(destination: Logout(shouldPopToRootView: self.$rootIsActive)) {
-                                Text("Logout")
-                                    .foregroundColor(Color.black)
-                                    .font(.title2)
-                                    .frame(width: 100)
-                                    .padding()
-                                    .background(Color(red: 0.98, green: 0.49, blue: 0.49))
-                                    .clipShape(Capsule())
-                                    .offset(y: -10)
-                            }
-                            .isDetailLink(false)
-                        }
-                        .padding(.bottom, 10)
+                        Text("Create Profile")
+                            .font(.largeTitle)
+                            .bold()
+                            .padding(.bottom, 10)
                         HStack(alignment: .center) {
                             Text("Name: ")
                                 .font(.title2)
-                            TextField("Name", text: $newUser.name)
+                            TextField("First", text: $newUser.firstName)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(5.0)
+                            TextField("Last", text: $newUser.firstName)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(5.0)
+                        }
+                        .padding(.bottom, 10)
+                        HStack(alignment: .center) {
+                            Text("Email: ")
+                                .font(.title2)
+                            TextField("Email", text: $newUser.email)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
@@ -55,7 +50,7 @@ struct CreateUserView: View {
                             Text("Profile Picture: ")
                                 .font(.title2)
 //                            ImagePickerView(sourceType: <#T##UIImagePickerController.SourceType#>, onImagePicked: <#T##(UIImage) -> Void#>)
-                            TextField("Ken.jpeg", text: $newUser.name)
+                            TextField("Ken.jpeg", text: $newUser.proPic)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
@@ -63,15 +58,33 @@ struct CreateUserView: View {
                             Spacer()
                         }
                         .padding(.bottom, 10)
-                        HStack (alignment: .center) {
-                            Text("Birthday: ")
+                        HStack(alignment: .center) {
+                            Text("Username: ")
                                 .font(.title2)
-                            DatePicker("Birthday:", selection: $newUser.dob, displayedComponents: [.date])
-                                .labelsHidden()
+                            TextField("Username", text: $newUser.lastName)
+                                .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
-//                            Spacer()
                         }
+                        .padding(.bottom, 10)
+                        HStack(alignment: .center) {
+                            Text("Password: ")
+                                .font(.title2)
+                            TextField("Password", text: $newUser.password)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(5.0)
+                        }
+                        .padding(.bottom, 10)
+                        HStack(alignment: .center) {
+                            Text("Confirm Password: ")
+                                .font(.title2)
+                            TextField("Password", text: $confirmPassword)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(5.0)
+                        }
+                        .padding(.bottom, 10)
                         Spacer()
                         HStack {
                             Button(action: {}) {
