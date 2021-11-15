@@ -15,15 +15,12 @@ struct Note: Identifiable {
 struct Dashboard: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var rootIsActive : Bool
+    @Binding var user_id : Int
     @State private var date = Date()
+    @State private var parameters = AllEntriesGivenDate(user_id: 6, date: "")
+    
     @State private var user = "Ken"
     
-    @State var notes = [
-        Note(title: "Today's Diary Entry"),
-        Note(title: "Blood Test Results"),
-        Note(title: "From: Mom")
-    ]
-
     func getTimeOfDay() -> String {
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
@@ -42,10 +39,6 @@ struct Dashboard: View {
         }
     }
     
-    func createNote() -> Void {
-        notes.append(Note(title: "New entry"))
-    }
-    
     @State var entries = [Entry]()
     
     var body: some View {
@@ -58,7 +51,7 @@ struct Dashboard: View {
                             .font(.largeTitle)
                             .bold()
                         Spacer()
-                        NavigationLink(destination: Settings(rootIsActive: self.$rootIsActive)) {
+                        NavigationLink(destination: Settings(rootIsActive: self.$rootIsActive, user_id: self.$user_id)) {
                             Image("KennethChou")
                                 .resizable()
                                 .frame(width: 100, height: 66.6)
@@ -77,17 +70,26 @@ struct Dashboard: View {
                                 selection: $date,
                                 displayedComponents: [.date]
                             )
+                            .onChange(of: date, perform: { value in
+                                parameters.date = Date.getISOTimestamp(date: self.date)
+                                DisplayEntry().allEntries(entry: parameters) { (entries) in
+                                    self.entries = entries
+                                }
+                            })
                             List(entries, id: \.id) { entry in
-                                NavigationLink(destination: DiaryEntryView(rootIsActive: self.$rootIsActive, entry: entry, selectedDate: $date, userName: $user)) {
-                                    Text("\(entry.title!)")
+                                NavigationLink(destination: DiaryEntryView(rootIsActive: self.$rootIsActive, user_id: self.$user_id, entry: entry, selectedDate: $date, userName: $user)) {
+                                    Text("\(entry.title ?? "")")
                                 }
                             }
                                 .onAppear() {
-                                    GetDiary().loadData { (entries) in
-                                        self.entries = entries             }
+                                    parameters.user_id = self.user_id
+                                    parameters.date = Date.getISOTimestamp(date: self.date)
+                                    DisplayEntry().allEntries(entry: parameters) { (entries) in
+                                        self.entries = entries
+                                    }
                                 }
                             Spacer()
-                            NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive)) {
+                            NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive, user_id: self.$user_id)) {
                                 Text("Create new entry +")
                                 .font(.headline)
                                 .foregroundColor(.blue)
@@ -106,6 +108,7 @@ struct Dashboard: View {
                         VStack() {
                             // Widgets
                             QuotesView()
+                            Spacer()
                             NewsView()
                             WeatherView()
                             Spacer()
@@ -125,7 +128,7 @@ struct Dashboard: View {
 #if DEBUG
 struct Dashboard_Previews : PreviewProvider {
     static var previews: some View {
-        Dashboard(rootIsActive: .constant(false))
+        Dashboard(rootIsActive: .constant(false), user_id: .constant(6))
     }
 }
 #endif

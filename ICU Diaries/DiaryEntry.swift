@@ -10,6 +10,7 @@ import SwiftUI
 struct DiaryEntryView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var rootIsActive : Bool
+    @Binding var user_id : Int
     
     let entry : Entry
 
@@ -35,14 +36,14 @@ struct DiaryEntryView: View {
                                 displayedComponents: [.date]
                             )
                             List(entries) { entry in
-                                Text("\(entry.title!)")
+                                Text("\(entry.title ?? "")")
                             }
                                 .onAppear() {
                                     GetDiary().loadData { (entries) in
                                         self.entries = entries             }
                                 }
                             Spacer()
-                            NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive)) {
+                            NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive, user_id: self.$user_id)) {
                                 Text("Create new entry +")
                                 .font(.headline)
                                 .foregroundColor(.blue)
@@ -56,9 +57,9 @@ struct DiaryEntryView: View {
                         .frame(minWidth: 0, maxWidth: .infinity)
                         VStack() {
                             Spacer()
-                            Text("\(entry.content!)")
+                            Text("\(entry.content ?? "")")
                             Spacer()
-                            NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive)) {
+                            NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive, user_id: self.$user_id)) {
                                 Text("Edit entry")
                                 .font(.headline)
                                 .foregroundColor(.blue)
@@ -87,3 +88,9 @@ struct DiaryEntryView: View {
 //    }
 //}
 //#endif
+
+struct DiaryEntry_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
+}

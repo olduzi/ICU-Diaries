@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CreateEntryView: View {
     @Binding var rootIsActive : Bool
+    @Binding var user_id : Int
 
     @State var title = "";
     @State var content = "";
@@ -28,6 +29,7 @@ struct CreateEntryView: View {
                             .font(.title2)
                             .fontWeight(.regular)
                         TextField("", text: $title)
+                            .autocapitalization(.none)
                             .font(.title2)
                             .padding(10)
                             .background(Color.white)
@@ -38,6 +40,7 @@ struct CreateEntryView: View {
                         .font(.title2)
                         .padding(.bottom)
                     TextEditor(text: $content)
+                        .autocapitalization(.none)
                         .font(.title2)
                         .cornerRadius(10)
                         .padding(.bottom)
@@ -46,6 +49,7 @@ struct CreateEntryView: View {
                             .font(.title2)
                             .fontWeight(.regular)
                         TextField("", text: $recipient)
+                            .autocapitalization(.none)
                             .font(.title2)
                             .padding(10)
                             .background(Color.white)
@@ -72,7 +76,7 @@ struct CreateEntryView: View {
 struct CreateEntry_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CreateEntryView(rootIsActive: .constant(false))
+            CreateEntryView(rootIsActive: .constant(false), user_id: .constant(6))
         }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct LoginResponse : Codable {
     var user_id : Int
@@ -88,4 +89,24 @@ class GetLogin : ObservableObject{
         }.resume()
     }
     
+}
+
+struct LoginTest: View {
+    @State var entries = LoginUsers(username: "slingjun2", password: "icudiary42021")
+    @State var user_id : Int
+
+    var body: some View {
+        Text("\(user_id)")
+            .onAppear() {
+                GetLogin().login(entry: entries) { (response) in
+                        self.user_id = response
+                    }
+                }.navigationTitle("Quote List")
+        }
+}
+
+struct LoginTest_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginTest(user_id: 0)
+    }
 }

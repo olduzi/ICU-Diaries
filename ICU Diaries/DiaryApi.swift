@@ -12,27 +12,35 @@ struct DiaryResponse: Codable {
     var contents:[Entry]
 }
 
+struct DiaryRequest: Codable, Identifiable {
+    let id = UUID()
+    var sender_id: Int
+    var receiver_name: String
+    var title: String
+    var content: String
+}
+
 struct Entry : Codable, Identifiable {
     let id = UUID()
-    var diary_id: Int?
-    var receiver_id: Int?
-    var sender_id: Int?
-    var receiver_name: String?
-    var created_time: String?
+    var diary_id: Int
+    var receiver_id: Int
+    var sender_id: Int
+    var receiver_name: String
+    var created_time: String
 //    var modified_time: String
-    var title: String?
-    var content: String?
+    var title: String
+    var content: String
     
-    init(sender_id: Int, receiver_name: String, title: String, content: String) {
-        self.diary_id = nil
-        self.sender_id = nil
-        self.receiver_id = nil
-        self.sender_id = sender_id
-        self.receiver_name = receiver_name
-        self.created_time = nil
-        self.title = title
-        self.content = content
-    }
+//    init(sender_id: Int, receiver_name: String, title: String, content: String) {
+//        self.diary_id = nil
+//        self.sender_id = nil
+//        self.receiver_id = nil
+//        self.sender_id = sender_id
+//        self.receiver_name = receiver_name
+//        self.created_time = nil
+//        self.title = title
+//        self.content = content
+//    }
 }
 
 class GetDiary : ObservableObject{
@@ -57,13 +65,13 @@ class GetDiary : ObservableObject{
     
     
     //sends a diary entry
-    func sendData(entry: Entry, completion:@escaping (String) -> ()) {
+    func sendData(entry: DiaryRequest, completion:@escaping (String) -> ()) {
             guard let url = URL(string: "http://68.58.243.157:8000/api/diary/new/") else {
                 print("Invalid url...")
                 return
             }
 
-            let body: [String : Any] = ["sender_id": entry.sender_id!, "receiver_name": entry.receiver_name!, "title": entry.title!, "content": entry.content!]
+            let body: [String : Any] = ["sender_id": entry.sender_id, "receiver_name": entry.receiver_name, "title": entry.title, "content": entry.content]
             let finalBody = try! JSONSerialization.data(withJSONObject: body)
 
             var request = URLRequest(url: url)
@@ -77,13 +85,11 @@ class GetDiary : ObservableObject{
                     completion(response!.description)
                 }
             }.resume()
-        
-        
     }
 }
 
 struct ViewDiary: View {
-    @State var entries = Entry(sender_id: 3, receiver_name: "olduzi", title: "Test Post", content: "Successful Post")
+    @State var entries = DiaryRequest(sender_id: 8, receiver_name: "olduzi", title: "Test Post", content: "Successful Post")
     @State var content = "hello"
 
     var body: some View {

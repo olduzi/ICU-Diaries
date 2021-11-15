@@ -9,6 +9,11 @@ import SwiftUI
 struct Settings: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var rootIsActive : Bool
+    @Binding var user_id : Int
+    
+    @State private var currentUser = CreateUsers(firstName: "", lastName: "", username: "", password1: "", password2: "") // initialize differently
+    
+    // @State private var currentUser = getUser(diary_id)
     
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)
@@ -35,34 +40,47 @@ struct Settings: View {
                         HStack(alignment: .center) {
                             Text("Name: ")
                                 .font(.title2)
-                            TextField("Name", text: .constant("Ken"))
+                            TextField("First", text: $currentUser.firstName)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(5.0)
+                            TextField("Last", text: $currentUser.lastName)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
                         }
                         .padding(.bottom, 10)
                         HStack(alignment: .center) {
-                            Text("Profile Picture: ")
+                            Text("Username: ")
                                 .font(.title2)
-                            TextField("Profile Picture", text: .constant("Ken.jpeg"))
+                            TextField("Username", text: $currentUser.username)
+                                .autocapitalization(.none)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
-                            Button("Choose photo", action: {})
-                            Spacer()
                         }
                         .padding(.bottom, 10)
-                        HStack (alignment: .center) {
-                            Text("Date of Birth: ")
+                        HStack(alignment: .center) {
+                            Text("Password: ")
                                 .font(.title2)
-                            TextField("Date of Birth", text: .constant("August 9, 2000"))
+                            SecureField("Password", text: $currentUser.password1)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
                         }
+                        .padding(.bottom, 10)
+                        HStack(alignment: .center) {
+                            Text("Confirm Password: ")
+                                .font(.title2)
+                            SecureField("Password", text: $currentUser.password2)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(5.0)
+                        }
+                        .padding(.bottom, 10)
                         Spacer()
                         HStack {
-                            Button(action: {}) {
+                            Button(action: {self.presentationMode.wrappedValue.dismiss()}) {
                                 Text("Save")
                                     .foregroundColor(Color.black)
                                     .font(.title2)
@@ -71,13 +89,13 @@ struct Settings: View {
                             .padding()
                             .background(Color.white)
                             .clipShape(Capsule())
-                            Button ("Cancel", action: {self.presentationMode.wrappedValue.dismiss()})
-                            .foregroundColor(Color.black)
-                            .font(.title2)
-                            .frame(width: 100)
-                            .padding()
-                            .background(Color.white)
-                            .clipShape(Capsule())
+//                            Button ("Cancel", action: {self.presentationMode.wrappedValue.dismiss()})
+//                            .foregroundColor(Color.black)
+//                            .font(.title2)
+//                            .frame(width: 100)
+//                            .padding()
+//                            .background(Color.white)
+//                            .clipShape(Capsule())
                         }
                     }
                     .offset(y: -40)
@@ -91,7 +109,7 @@ struct Settings: View {
 #if DEBUG
 struct Settings_Previews : PreviewProvider {
     static var previews: some View {
-        Settings(rootIsActive: .constant(false))
+        Settings(rootIsActive: .constant(false), user_id: .constant(1))
     }
 }
 #endif
