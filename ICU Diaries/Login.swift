@@ -9,8 +9,12 @@ import SwiftUI
 
 struct Login : View {
     @State var isActive : Bool = false
-    @State var username: String = ""
-    @State var password: String = ""
+    
+    @State var credentials = LoginUsers(username: "", password: "")
+//    @State var username: String = ""
+//    @State var password: String = ""
+    @State var user_id : Int
+    
     var body: some View {
         NavigationView {
             Color(red: 0.65, green: 0.76, blue: 0.69)
@@ -18,30 +22,34 @@ struct Login : View {
                     .overlay(
             VStack {
                 WelcomeText()
-                TextField("Username", text: $username)
+                TextField("Username", text: $credentials.username)
+                    .autocapitalization(.none)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(5.0)
                     .padding(.bottom, 20)
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $credentials.password)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(5.0)
                     .padding(.bottom, 20)
-                NavigationLink(destination: Dashboard(rootIsActive: self.$isActive), isActive: self.$isActive) {
+                NavigationLink(destination: Dashboard(rootIsActive: self.$isActive, user_id: self.$user_id), isActive: self.$isActive) {
                     Text("SIGN IN")
                     .font(.headline)
                     .foregroundColor(.white)
-                    .padding()
                     .frame(width: 220, height: 60)
                     .background(Color.green)
                     .cornerRadius(15.0)
                 }
                 .isDetailLink(false)
                 .simultaneousGesture(TapGesture().onEnded{
-                    self.username = ""
-                    self.password = ""
+                    GetLogin().login(entry: credentials) { (user_id) in
+                        self.user_id = user_id
+                    }
+                    credentials.username = ""
+                    credentials.password = ""
                 })
+                Spacer()
                 HStack() {
                     Text("New user?")
                     NavigationLink(destination: CreateUserView(rootIsActive: self.$isActive), isActive: self.$isActive) {
@@ -50,7 +58,7 @@ struct Login : View {
                 }
                 .padding(.top)
             }
-            .offset(y: -100)
+//            .offset(y: -100)
             .padding()
             )
         }
@@ -101,6 +109,6 @@ struct LoginButton : View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login()
+        Login(user_id: 1)
     }
 }
