@@ -33,7 +33,7 @@ class DisplayEntry : ObservableObject{
     
     //sends data to create user
     func allEntries(entry: AllEntriesGivenDate, completion:@escaping (String) -> ()) {
-        guard let url = URL(string: "http://68.58.243.157:8000/api/accounts/register/") else {
+        guard let url = URL(string: "http://68.58.243.157:8000/api/diary/receiver") else {
             print("Invalid url...")
             return
         }
@@ -55,7 +55,7 @@ class DisplayEntry : ObservableObject{
     
     //sends data to create user
     func login(entry: DiaryEntry, completion:@escaping (String) -> ()) {
-        guard let url = URL(string: "http://68.58.243.157:8000/api/accounts/login/") else {
+        guard let url = URL(string: "http://68.58.243.157:8000/api/diary/single") else {
             print("Invalid url...")
             return
         }
