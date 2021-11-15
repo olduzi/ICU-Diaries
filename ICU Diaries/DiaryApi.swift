@@ -71,6 +71,7 @@ class GetDiary : ObservableObject{
             request.httpMethod = "POST"
             request.httpBody = finalBody
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("Accept", forHTTPHeaderField: "Vary")
 
             URLSession.shared.dataTask(with: request) { (data, response, error) in
                 DispatchQueue.main.async {
