@@ -7,37 +7,35 @@
 
 import Foundation
 
-struct UserData: Codable {
-    var contents:[Users]
+struct LoginResponse : Codable {
+    var user_id : Int
 }
 
 struct LoginUsers : Codable, Identifiable {
     let id = UUID()
-    var username: String?
-    var password: String?
+    var username: String
+    var password: String
     
     init(username: String, password: String) {
-        self.username = nil
-        self.password = nil
+        self.username = username
+        self.password = password
     }
 }
 
 struct CreateUsers : Codable, Identifiable {
     let id = UUID()
-    var username: String?
-    var email: String?
-    var password1: String?
-    var password2: String?
-    var firstname: String?
-    var lastname: String?
+    var firstName: String
+    var lastName: String
+    var username: String
+    var password1: String
+    var password2: String
     
-    init(usernane: String, email: String, password1: String, password2: String, firstname: String, lastname: String) {
-        self.username = nil
-        self.email = nil
-        self.password1 = nil
-        self.password2 = nil
-        self.firstname = nil
-        self.lastname = nil
+    init(firstName: String, lastName: String, username: String, password1: String, password2: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.username = username
+        self.password1 = password1
+        self.password2 = password2
     }
 }
 
@@ -50,7 +48,7 @@ class GetLogin : ObservableObject{
             return
         }
         
-        let body: [String : Any] = ["username": entry.username!, "email": entry.email!, "password1": entry.password1!, "password2": entry.password2!, "firstname": entry.firstname!, "lastname": entry.lastname!]
+        let body: [String : Any] = ["firstName": entry.firstName, "lastName": entry.lastName, "username": entry.username,  "password1": entry.password1, "password2": entry.password2]
         let finalBody = try! JSONSerialization.data(withJSONObject: body)
         
         var request = URLRequest(url: url)
@@ -66,13 +64,13 @@ class GetLogin : ObservableObject{
     }
     
     //sends data to create user
-    func login(entry: LoginUsers, completion:@escaping (String) -> ()) {
+    func login(entry: LoginUsers, completion:@escaping (Int) -> ()) {
         guard let url = URL(string: "http://68.58.243.157:8000/api/accounts/login/") else {
             print("Invalid url...")
             return
         }
         
-        let body: [String : Any] = ["username": entry.username!, "password": entry.password!]
+        let body: [String : Any] = ["username": entry.username, "password": entry.password]
         let finalBody = try! JSONSerialization.data(withJSONObject: body)
         
         var request = URLRequest(url: url)
@@ -81,8 +79,11 @@ class GetLogin : ObservableObject{
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let response = try! JSONDecoder().decode(LoginResponse.self, from: data!)
+            guard let data = data else { return }
+            let _ = print(String(data: data, encoding: .utf8)!)
             DispatchQueue.main.async {
-                completion(response!.description)
+                completion(response.user_id)
             }
         }.resume()
     }
