@@ -11,7 +11,7 @@ struct CreateUserView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var rootIsActive : Bool
     
-    @State private var newUser = CreateUsers(firstName: "", lastName: "", username: "", password1: "", password2: "") // initialize differently
+    @State private var newUser = CreateUsers(firstName: "", lastName: "", username: "", password1: "", password2: "", email: "") // initialize differently
     
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)

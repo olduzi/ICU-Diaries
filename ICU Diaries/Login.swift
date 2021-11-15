@@ -13,7 +13,7 @@ struct Login : View {
     @State var credentials = LoginUsers(username: "", password: "")
 //    @State var username: String = ""
 //    @State var password: String = ""
-    @State var user_id : Int
+    @State var user_id : Int = 0
     
     var body: some View {
         NavigationView {

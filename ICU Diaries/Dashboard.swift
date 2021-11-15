@@ -110,6 +110,7 @@ struct Dashboard: View {
                             QuotesView()
                             Spacer()
                             NewsView()
+                            Spacer()
                             WeatherView()
                             Spacer()
                         }
@@ -128,7 +129,7 @@ struct Dashboard: View {
 #if DEBUG
 struct Dashboard_Previews : PreviewProvider {
     static var previews: some View {
-        Dashboard(rootIsActive: .constant(false), user_id: .constant(6))
+        Dashboard(rootIsActive: .constant(false), user_id: .constant(13))
     }
 }
 #endif

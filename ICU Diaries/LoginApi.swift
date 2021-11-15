@@ -30,20 +30,22 @@ struct CreateUsers : Codable, Identifiable {
     var username: String
     var password1: String
     var password2: String
+    var email: String
     
-    init(firstName: String, lastName: String, username: String, password1: String, password2: String) {
+    init(firstName: String, lastName: String, username: String, password1: String, password2: String, email: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.username = username
         self.password1 = password1
         self.password2 = password2
+        self.email = email
     }
 }
 
 class GetLogin : ObservableObject{
     
     //sends data to create user
-    func createUser(entry: CreateUsers, completion:@escaping (String) -> ()) {
+    func createUser(entry: CreateUsers, completion:@escaping (Int) -> ()) {
         guard let url = URL(string: "http://68.58.243.157:8000/api/accounts/register/") else {
             print("Invalid url...")
             return
@@ -58,8 +60,11 @@ class GetLogin : ObservableObject{
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let response = try! JSONDecoder().decode(LoginResponse.self, from: data!)
+            guard let data = data else { return }
+            let _ = print(String(data: data, encoding: .utf8)!)
             DispatchQueue.main.async {
-                completion(response!.description)
+                completion(response.user_id)
             }
         }.resume()
     }

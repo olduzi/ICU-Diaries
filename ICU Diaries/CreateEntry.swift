@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct CreateEntryView: View {
+    @Environment(\.presentationMode) var presentationMode
+
     @Binding var rootIsActive : Bool
     @Binding var user_id : Int
 
-    @State var title = "";
-    @State var content = "";
-    @State var recipient = "";
+    @State var newEntry = DiaryRequest(sender_id: 0, receiver_name: "", title: "", content: "")
     
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)
+            .onAppear() {
+                newEntry.sender_id = user_id
+            }
             .ignoresSafeArea()
             .overlay(
                 VStack(alignment: .leading) {
@@ -28,7 +31,7 @@ struct CreateEntryView: View {
                         Text("Title: ")
                             .font(.title2)
                             .fontWeight(.regular)
-                        TextField("", text: $title)
+                        TextField("", text: $newEntry.title)
                             .autocapitalization(.none)
                             .font(.title2)
                             .padding(10)
@@ -39,7 +42,7 @@ struct CreateEntryView: View {
                     Text("Content: ")
                         .font(.title2)
                         .padding(.bottom)
-                    TextEditor(text: $content)
+                    TextEditor(text: $newEntry.content)
                         .autocapitalization(.none)
                         .font(.title2)
                         .cornerRadius(10)
@@ -48,7 +51,7 @@ struct CreateEntryView: View {
                         Text("Recipient: ")
                             .font(.title2)
                             .fontWeight(.regular)
-                        TextField("", text: $recipient)
+                        TextField("", text: $newEntry.receiver_name)
                             .autocapitalization(.none)
                             .font(.title2)
                             .padding(10)
@@ -57,7 +60,10 @@ struct CreateEntryView: View {
                     }
                     .padding(.bottom)
                     Spacer()
-                    Button(action: {}) {
+                    Button(action: {
+                        GetDiary().sendData(entry: newEntry) { _ in }
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
                         Text("Save")
                             .foregroundColor(Color.black)
                             .font(.title2)

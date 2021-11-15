@@ -11,7 +11,7 @@ struct Settings: View {
     @Binding var rootIsActive : Bool
     @Binding var user_id : Int
     
-    @State private var currentUser = CreateUsers(firstName: "", lastName: "", username: "", password1: "", password2: "") // initialize differently
+    @State private var currentUser = CreateUsers(firstName: "", lastName: "", username: "", password1: "", password2: "", email: "") // initialize differently
     
     // @State private var currentUser = getUser(diary_id)
     
