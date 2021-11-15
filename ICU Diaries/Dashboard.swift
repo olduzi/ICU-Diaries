@@ -106,12 +106,7 @@ struct Dashboard: View {
                         VStack() {
                             // Widgets
                             QuotesView()
-                            Spacer()
-                            Image("News")
-                                .resizable()
-                                .frame(width: 355.25, height: 369.95)
-                                .cornerRadius(20)
-                                .offset(y: -80)
+                            NewsView()
                             WeatherView()
                             Spacer()
                         }

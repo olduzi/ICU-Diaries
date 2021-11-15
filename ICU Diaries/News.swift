@@ -62,7 +62,7 @@ struct NewsView: View {
             VStack(alignment: .leading) {
                 
                 Text("\(new.name)")
-                    .font(.title)
+                    .font(.headline)
                     .foregroundColor(.red)
                     .padding(.bottom)
                 Spacer()
@@ -73,7 +73,9 @@ struct NewsView: View {
                 GetNews().loadData { (books) in
                     self.news = books
                 }
-            }.navigationTitle("Book List")
+            }
+        .frame(width: 355.25, height: 369.95)
+        .cornerRadius(20)
     }
 }
 
