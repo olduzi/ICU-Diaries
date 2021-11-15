@@ -67,7 +67,7 @@ struct WeatherView: View {
     
     var body: some View {
         VStack {
-            Text("\(temp) degrees F and \(condition)")
+            Text("\(temp) degrees F and \(condition) in Ann Arbor")
                 .padding()
                 .onAppear() {
                     GetWeather().loadData { (weather) in
