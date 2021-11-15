@@ -11,8 +11,8 @@ struct CreateEntryView: View {
     @Binding var rootIsActive : Bool
 
     @State var title = "";
-    @State var date = Date();
     @State var content = "";
+    @State var recipient = "";
     
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)
@@ -33,21 +33,26 @@ struct CreateEntryView: View {
                             .background(Color.white)
                             .cornerRadius(10)
                     }
-                    DatePicker(
-                        "Date:",
-                        selection: $date,
-                        displayedComponents: [.date]
-                    )
-                    .font(.title2)
                     .padding(.bottom)
                     Text("Content: ")
                         .font(.title2)
-                        .fontWeight(.bold)
                         .padding(.bottom)
                     TextEditor(text: $content)
                         .font(.title2)
                         .cornerRadius(10)
                         .padding(.bottom)
+                    HStack() {
+                        Text("Recipient: ")
+                            .font(.title2)
+                            .fontWeight(.regular)
+                        TextField("", text: $recipient)
+                            .font(.title2)
+                            .padding(10)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                    }
+                    .padding(.bottom)
+                    Spacer()
                     Button(action: {}) {
                         Text("Save")
                             .foregroundColor(Color.black)
