@@ -25,7 +25,6 @@ struct Entry : Codable, Identifiable {
     var diary_id: Int
     var receiver_id: Int
     var sender_id: Int
-    var receiver_name: String
     var created_time: String
 //    var modified_time: String
     var title: String

@@ -20,7 +20,6 @@ struct EditEntryView: View {
             .onAppear() {
                 data.diary_id = self.diary_id
                 DisplayEntry().single(entry: data) { (data) in
-                    self.data.receiver_name = data[0].receiver_name
                     self.data.title = data[0].title
                     self.data.content = data[0].content
                 }
