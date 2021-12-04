@@ -13,6 +13,40 @@ struct CreateUserView: View {
     
     @State private var newUser = CreateUsers(firstName: "", lastName: "", username: "", password1: "", password2: "", email: "") // initialize differently
     
+    func checkpassword() -> String {
+        let firstPass = newUser.password1
+        let secondPass = newUser.password2
+        
+        if firstPass != "" && secondPass != "" {
+            if firstPass == secondPass {
+                return "Passwords match"
+            }
+            else {
+                return "Passwords don't match"
+            }
+        }
+        else {
+            return ""
+        }
+    }
+    
+    func errorCheck() -> Bool {
+        let firstPass = newUser.password1
+        let secondPass = newUser.password2
+        let userName = newUser.username
+        let name = newUser.firstName
+        let lastName = newUser.lastName
+        if firstPass == "" || secondPass == "" || userName == "" || name == "" || lastName == "" {
+            return true
+        }
+        else if checkpassword() == "Passwords don't match" {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)
                 .ignoresSafeArea() // Ignore just for the color
@@ -82,6 +116,8 @@ struct CreateUserView: View {
                                 .background(Color.white)
                                 .cornerRadius(5.0)
                         }
+                        Text("\(checkpassword())")
+                            .font(.title2)
                         .padding(.bottom, 10)
                         Spacer()
                         HStack {
@@ -94,6 +130,7 @@ struct CreateUserView: View {
                             .padding()
                             .background(Color.white)
                             .clipShape(Capsule())
+                            .disabled(errorCheck())
                             Button ("Cancel", action: {self.presentationMode.wrappedValue.dismiss()})
                             .foregroundColor(Color.black)
                             .font(.title2)
