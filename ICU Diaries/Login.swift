@@ -14,7 +14,7 @@ struct Login : View {
     @State var credentials = LoginUsers(username: "", password: "")
 //    @State var username: String = ""
 //    @State var password: String = ""
-    @State var user_id : Int = 10
+    @State private var user_id : Int = 10
     
     var body: some View {
         NavigationView {
@@ -34,25 +34,46 @@ struct Login : View {
                     .background(Color.white)
                     .cornerRadius(5.0)
                     .padding(.bottom, 20)
-                NavigationLink(destination: Dashboard(rootIsActive: self.$isDashboard, user_id: self.$user_id), isActive: self.$isDashboard) {
-                    Button(action: {
-                        print("login tapped")
-                        self.isDashboard = true
-                        }) {
-                            HStack {
-                                Spacer()
-                                Text("SIGN IN")
-                                    .font(.headline)
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .frame(width: 220, height: 60)
-                                    .background(Color.green)
-                                    .cornerRadius(15.0)
-                                Spacer()
+                HStack {
+                    Spacer()
+                    NavigationLink(destination: Dashboard(rootIsActive: self.$isDashboard, user_id: self.$user_id), isActive: self.$isDashboard) {
+                        Button(action: {
+                            GetLogin().login(entry: credentials) { (user_id) in
+                                self.user_id = user_id
                             }
-                        }
+                            self.isDashboard = true
+                            }) {
+                                    Text("SIGN IN")
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                        .padding()
+                                        .frame(width: 220, height: 60)
+                                        .background(Color.green)
+                                        .cornerRadius(15.0)
+                            }
+                    }
+                    .isDetailLink(false)
+                
+//                    Button(action: {
+//                        GetLogin().login(entry: credentials) { (user_id) in
+//                            self.user_id = user_id
+//                        }
+//                        self.isDashboard = true
+//                    }, label: {
+//                        NavigationLink(destination: Dashboard(rootIsActive: self.$isDashboard, user_id: self.$user_id), isActive: self.$isDashboard) {
+//                            Text("SIGN IN")
+//                                .font(.headline)
+//                                .foregroundColor(.white)
+//                                .padding()
+//                                .frame(width: 220, height: 60)
+//                                .background(Color.green)
+//                                .cornerRadius(15.0)
+//                        }
+//                    })
+//
+                    Spacer()
                 }
-                .isDetailLink(false)
+                
 //                .simultaneousGesture(TapGesture().onEnded{
 //                    GetLogin().login(entry: credentials) { (user_id) in
 //                        self.user_id = user_id
@@ -120,6 +141,6 @@ struct LoginButton : View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login(user_id: 1)
+        Login()
     }
 }
