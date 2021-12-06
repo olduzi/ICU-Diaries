@@ -48,7 +48,7 @@ struct Dashboard: View {
             .overlay(
                 VStack(alignment: .leading) {
                     HStack() {
-                        Text("Good \(getTimeOfDay()) \(user)!")
+                        Text("Good \(getTimeOfDay()) \(user_id)!")
                             .font(.largeTitle)
                             .bold()
                         Spacer()
