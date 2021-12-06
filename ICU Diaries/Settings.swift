@@ -15,6 +15,40 @@ struct Settings: View {
     
     // @State private var currentUser = getUser(diary_id)
     
+    func checkpassword() -> String {
+        let firstPass = currentUser.password1
+        let secondPass = currentUser.password2
+        
+        if firstPass != "" && secondPass != "" {
+            if firstPass == secondPass {
+                return "Passwords match"
+            }
+            else {
+                return "Passwords don't match"
+            }
+        }
+        else {
+            return ""
+        }
+    }
+    
+    func errorCheck() -> Bool {
+        let firstPass = currentUser.password1
+        let secondPass = currentUser.password2
+        let userName = currentUser.username
+        let name = currentUser.firstName
+        let lastName = currentUser.lastName
+        if firstPass == "" || secondPass == "" || userName == "" || name == "" || lastName == "" {
+            return true
+        }
+        else if checkpassword() == "Passwords don't match" {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)
                 .ignoresSafeArea() // Ignore just for the color
@@ -77,6 +111,7 @@ struct Settings: View {
                                 .background(Color.white)
                                 .cornerRadius(5.0)
                         }
+                        Text("\(checkpassword())")
                         .padding(.bottom, 10)
                         Spacer()
                         HStack {
@@ -89,6 +124,7 @@ struct Settings: View {
                             .padding()
                             .background(Color.white)
                             .clipShape(Capsule())
+                            .disabled(errorCheck())
 //                            Button ("Cancel", action: {self.presentationMode.wrappedValue.dismiss()})
 //                            .foregroundColor(Color.black)
 //                            .font(.title2)

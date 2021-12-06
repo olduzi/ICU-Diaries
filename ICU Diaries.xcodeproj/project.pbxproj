@@ -7,7 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F8EBE7CE271641D200EA21EE /* ICU_DiariesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EBE7CD271641D200EA21EE /* ICU_DiariesApp.swift */; };
+		21C24134275801E3008AE6EA /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C24122275801E2008AE6EA /* Login.swift */; };
+		21C24136275801E3008AE6EA /* InspoQuotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C24124275801E2008AE6EA /* InspoQuotes.swift */; };
+		21C24137275801E3008AE6EA /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C24125275801E2008AE6EA /* DiaryEntry.swift */; };
+		21C24138275801E3008AE6EA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C24126275801E2008AE6EA /* Settings.swift */; };
+		21C24139275801E3008AE6EA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C24127275801E2008AE6EA /* TestView.swift */; };
+		21C2413A275801E3008AE6EA /* quotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 21C24128275801E2008AE6EA /* quotes.json */; };
+		21C2413B275801E3008AE6EA /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C24129275801E3008AE6EA /* CreateUser.swift */; };
+		21C2413C275801E3008AE6EA /* EditEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C2412A275801E3008AE6EA /* EditEntry.swift */; };
+		21C2413D275801E3008AE6EA /* LoginApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C2412B275801E3008AE6EA /* LoginApi.swift */; };
+		21C2413E275801E3008AE6EA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C2412C275801E3008AE6EA /* ContentView.swift */; };
+		21C2413F275801E3008AE6EA /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C2412D275801E3008AE6EA /* Weather.swift */; };
+		21C24140275801E3008AE6EA /* DisplayEntryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C2412E275801E3008AE6EA /* DisplayEntryApi.swift */; };
+		21C24141275801E3008AE6EA /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C2412F275801E3008AE6EA /* News.swift */; };
+		21C24142275801E3008AE6EA /* Logout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C24130275801E3008AE6EA /* Logout.swift */; };
+		21C24143275801E3008AE6EA /* CreateEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C24131275801E3008AE6EA /* CreateEntry.swift */; };
+		21C24144275801E3008AE6EA /* DiaryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C24132275801E3008AE6EA /* DiaryApi.swift */; };
+		21C24145275801E3008AE6EA /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C24133275801E3008AE6EA /* Dashboard.swift */; };
+		21C2414727580249008AE6EA /* ICU_DiariesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C2414627580249008AE6EA /* ICU_DiariesApp.swift */; };
 		F8EBE7D0271641D200EA21EE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EBE7CF271641D200EA21EE /* ContentView.swift */; };
 		F8EBE7D2271641D500EA21EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8EBE7D1271641D500EA21EE /* Assets.xcassets */; };
 		F8EBE7D5271641D500EA21EE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8EBE7D4271641D500EA21EE /* Preview Assets.xcassets */; };
@@ -33,8 +50,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21C24122275801E2008AE6EA /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		21C24124275801E2008AE6EA /* InspoQuotes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspoQuotes.swift; sourceTree = "<group>"; };
+		21C24125275801E2008AE6EA /* DiaryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntry.swift; sourceTree = "<group>"; };
+		21C24126275801E2008AE6EA /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		21C24127275801E2008AE6EA /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		21C24128275801E2008AE6EA /* quotes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = quotes.json; sourceTree = "<group>"; };
+		21C24129275801E3008AE6EA /* CreateUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
+		21C2412A275801E3008AE6EA /* EditEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEntry.swift; sourceTree = "<group>"; };
+		21C2412B275801E3008AE6EA /* LoginApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginApi.swift; sourceTree = "<group>"; };
+		21C2412C275801E3008AE6EA /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		21C2412D275801E3008AE6EA /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		21C2412E275801E3008AE6EA /* DisplayEntryApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayEntryApi.swift; sourceTree = "<group>"; };
+		21C2412F275801E3008AE6EA /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		21C24130275801E3008AE6EA /* Logout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logout.swift; sourceTree = "<group>"; };
+		21C24131275801E3008AE6EA /* CreateEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEntry.swift; sourceTree = "<group>"; };
+		21C24132275801E3008AE6EA /* DiaryApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryApi.swift; sourceTree = "<group>"; };
+		21C24133275801E3008AE6EA /* Dashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		21C2414627580249008AE6EA /* ICU_DiariesApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICU_DiariesApp.swift; sourceTree = "<group>"; };
 		F8EBE7CA271641D200EA21EE /* ICU Diaries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ICU Diaries.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8EBE7CD271641D200EA21EE /* ICU_DiariesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICU_DiariesApp.swift; sourceTree = "<group>"; };
 		F8EBE7CF271641D200EA21EE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F8EBE7D1271641D500EA21EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8EBE7D4271641D500EA21EE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -95,8 +129,25 @@
 		F8EBE7CC271641D200EA21EE /* ICU Diaries */ = {
 			isa = PBXGroup;
 			children = (
-				F8EBE7CD271641D200EA21EE /* ICU_DiariesApp.swift */,
+				21C2412C275801E3008AE6EA /* ContentView.swift */,
+				21C24131275801E3008AE6EA /* CreateEntry.swift */,
+				21C24129275801E3008AE6EA /* CreateUser.swift */,
+				21C2414627580249008AE6EA /* ICU_DiariesApp.swift */,
+				21C24133275801E3008AE6EA /* Dashboard.swift */,
+				21C24132275801E3008AE6EA /* DiaryApi.swift */,
+				21C24125275801E2008AE6EA /* DiaryEntry.swift */,
+				21C2412E275801E3008AE6EA /* DisplayEntryApi.swift */,
+				21C2412A275801E3008AE6EA /* EditEntry.swift */,
 				F8EBE7CF271641D200EA21EE /* ContentView.swift */,
+				21C24124275801E2008AE6EA /* InspoQuotes.swift */,
+				21C24122275801E2008AE6EA /* Login.swift */,
+				21C2412B275801E3008AE6EA /* LoginApi.swift */,
+				21C24130275801E3008AE6EA /* Logout.swift */,
+				21C2412F275801E3008AE6EA /* News.swift */,
+				21C24128275801E2008AE6EA /* quotes.json */,
+				21C24126275801E2008AE6EA /* Settings.swift */,
+				21C24127275801E2008AE6EA /* TestView.swift */,
+				21C2412D275801E3008AE6EA /* Weather.swift */,
 				F8EBE7D1271641D500EA21EE /* Assets.xcassets */,
 				F8EBE7D6271641D600EA21EE /* Info.plist */,
 				F8EBE7D3271641D500EA21EE /* Preview Content */,
@@ -235,6 +286,7 @@
 			files = (
 				F8EBE7D5271641D500EA21EE /* Preview Assets.xcassets in Resources */,
 				F8EBE7D2271641D500EA21EE /* Assets.xcassets in Resources */,
+				21C2413A275801E3008AE6EA /* quotes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +311,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21C24140275801E3008AE6EA /* DisplayEntryApi.swift in Sources */,
+				21C2414727580249008AE6EA /* ICU_DiariesApp.swift in Sources */,
+				21C24142275801E3008AE6EA /* Logout.swift in Sources */,
+				21C2413C275801E3008AE6EA /* EditEntry.swift in Sources */,
+				21C24134275801E3008AE6EA /* Login.swift in Sources */,
+				21C24141275801E3008AE6EA /* News.swift in Sources */,
+				21C2413E275801E3008AE6EA /* ContentView.swift in Sources */,
 				F8EBE7D0271641D200EA21EE /* ContentView.swift in Sources */,
-				F8EBE7CE271641D200EA21EE /* ICU_DiariesApp.swift in Sources */,
+				21C24136275801E3008AE6EA /* InspoQuotes.swift in Sources */,
+				21C24145275801E3008AE6EA /* Dashboard.swift in Sources */,
+				21C2413B275801E3008AE6EA /* CreateUser.swift in Sources */,
+				21C24143275801E3008AE6EA /* CreateEntry.swift in Sources */,
+				21C24139275801E3008AE6EA /* TestView.swift in Sources */,
+				21C24144275801E3008AE6EA /* DiaryApi.swift in Sources */,
+				21C2413F275801E3008AE6EA /* Weather.swift in Sources */,
+				21C24138275801E3008AE6EA /* Settings.swift in Sources */,
+				21C2413D275801E3008AE6EA /* LoginApi.swift in Sources */,
+				21C24137275801E3008AE6EA /* DiaryEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

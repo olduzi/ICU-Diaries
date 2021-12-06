@@ -20,6 +20,7 @@ struct Dashboard: View {
     @State private var parameters = AllEntriesGivenDate(user_id: 6, date: "")
     
     @State private var user = "Ken"
+    @State private var isHidden = false
     
     func getTimeOfDay() -> String {
         let calendar = Calendar.current
@@ -109,9 +110,12 @@ struct Dashboard: View {
                             // Widgets
                             QuotesView()
                             Spacer()
-                            NewsView()
-                            Spacer()
                             WeatherView()
+                            Spacer()
+                            if !isHidden {
+                                NewsView()
+                            }
+                            Toggle("Hide News", isOn: $isHidden)
                             Spacer()
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)

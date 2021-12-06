@@ -64,7 +64,6 @@ class GetWeather : ObservableObject{
 struct WeatherView: View {
     @State var temp = 0
     @State var condition = ""
-    
     var body: some View {
         VStack {
             Text("\(temp) degrees F and \(condition) in Ann Arbor")
@@ -81,7 +80,6 @@ struct WeatherView: View {
                 .cornerRadius(10.0)
                 .font(.title)
                 .multilineTextAlignment(.center)
-                
         }
     }
 }
