@@ -44,8 +44,8 @@ class DisplayEntry : ObservableObject{
         }.resume()
     }
     
-    func single(entry: DiaryEntry, completion:@escaping ([Entry]) -> ()) {
-        guard let url = URL(string: "http://68.58.243.157:8000/api/diary/single?diary_id=\(entry.diary_id)") else {
+    func single(diary_id: Int, completion:@escaping ([Entry]) -> ()) {
+        guard let url = URL(string: "http://68.58.243.157:8000/api/diary/single?diary_id=\(diary_id)") else {
             print("Invalid url...")
             return
         }

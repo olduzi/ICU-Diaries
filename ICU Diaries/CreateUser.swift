@@ -12,6 +12,8 @@ struct CreateUserView: View {
     @Binding var rootIsActive : Bool
     
     @State private var newUser = CreateUsers(firstName: "", lastName: "", username: "", password1: "", password2: "", email: "") // initialize differently
+    @State private var user_id : Int = 0
+    @State var isDashboard : Bool = false
     
     func checkpassword() -> String {
         let firstPass = newUser.password1
@@ -121,16 +123,24 @@ struct CreateUserView: View {
                         .padding(.bottom, 10)
                         Spacer()
                         HStack {
-                            Button(action: {}) {
-                                Text("Save")
-                                    .foregroundColor(Color.black)
-                                    .font(.title2)
-                                    .frame(width: 100)
+                            NavigationLink(destination: Dashboard(rootIsActive: self.$isDashboard, user_id: self.$user_id), isActive: self.$isDashboard) {
+                                Button(action: {
+                                    GetLogin().createUser(entry: newUser) { (user_id) in
+                                        self.user_id = user_id
+                                    }
+                                    self.isDashboard = true
+                                    }) {
+                                    Text("Save")
+                                        .foregroundColor(Color.black)
+                                        .font(.title2)
+                                        .frame(width: 100)
+                                }
+                                .padding()
+                                .background(Color.white)
+                                .clipShape(Capsule())
+                                .disabled(errorCheck())
                             }
-                            .padding()
-                            .background(Color.white)
-                            .clipShape(Capsule())
-                            .disabled(errorCheck())
+                            .isDetailLink(false)
                             Button ("Cancel", action: {self.presentationMode.wrappedValue.dismiss()})
                             .foregroundColor(Color.black)
                             .font(.title2)
@@ -140,6 +150,7 @@ struct CreateUserView: View {
                             .clipShape(Capsule())
                         }
                     }
+                    .navigationBarBackButtonHidden(true)
                     .offset(y: -40)
                     .padding()
             )

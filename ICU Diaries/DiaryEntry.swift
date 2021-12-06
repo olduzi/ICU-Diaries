@@ -12,12 +12,13 @@ struct DiaryEntryView: View {
     @Binding var rootIsActive : Bool
     @Binding var user_id : Int
     
-    let entry : Entry
+    @State var entry : Entry
 
     @Binding var selectedDate : Date
     @Binding var userName : String
     
     @State var entries = [Entry]()
+    @State private var parameters = AllEntriesGivenDate(user_id: 6, date: "")
 
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)
@@ -35,13 +36,33 @@ struct DiaryEntryView: View {
                                 selection: $selectedDate,
                                 displayedComponents: [.date]
                             )
-                            List(entries) { entry in
-                                Text("\(entry.title ?? "")")
-                            }
-                                .onAppear() {
-                                    GetDiary().loadData { (entries) in
-                                        self.entries = entries             }
+                            .onChange(of: selectedDate, perform: { value in
+                                parameters.date = Date.getISOTimestamp(date: self.selectedDate)
+                                DisplayEntry().allEntries(entry: parameters) { (entries) in
+                                    self.entries = entries
                                 }
+                            })
+                            List(entries, id: \.id) { entry in
+                                Button(action: {
+                                    DisplayEntry().single(diary_id: entry.diary_id) {
+                                        (entries) in self.entry = entries[0]
+                                    }
+                                }) {
+                                    Text("\(entry.title ?? "")")
+                                }
+//                                .onTapGesture {
+//                                    DisplayEntry().single(diary_id: entry.diary_id) {
+//                                        (entries) in self.entry = entries[0]
+//                                    }
+//                                }
+                            }
+                            .onAppear() {
+                                parameters.user_id = self.user_id
+                                parameters.date = Date.getISOTimestamp(date: self.selectedDate)
+                                DisplayEntry().allEntries(entry: parameters) { (entries) in
+                                    self.entries = entries
+                                }
+                            }
                             Spacer()
                             NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive, user_id: self.$user_id)) {
                                 Text("Create new entry +")
@@ -59,7 +80,7 @@ struct DiaryEntryView: View {
                             Spacer()
                             Text("\(entry.content ?? "")")
                             Spacer()
-                            NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive, user_id: self.$user_id)) {
+                            NavigationLink(destination: EditEntryView(rootIsActive: self.$rootIsActive, diary_id: $entry.diary_id)) {
                                 Text("Edit entry")
                                 .font(.headline)
                                 .foregroundColor(.blue)
