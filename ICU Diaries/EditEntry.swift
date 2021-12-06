@@ -18,8 +18,8 @@ struct EditEntryView: View {
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)
             .onAppear() {
-                data.diary_id = self.diary_id
-                DisplayEntry().single(entry: data) { (data) in
+                DisplayEntry().single(diary_id: diary_id) { (data) in
+                    self.data.diary_id = data[0].diary_id
                     self.data.title = data[0].title
                     self.data.content = data[0].content
                 }
@@ -77,6 +77,7 @@ struct EditEntryView: View {
                     .background(Color.white)
                     .clipShape(Capsule())
                 }
+                .offset(y: -40)
                 .padding()
             )
     }
