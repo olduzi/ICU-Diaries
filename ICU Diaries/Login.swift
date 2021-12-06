@@ -10,7 +10,7 @@ import SwiftUI
 struct Login : View {
     @State var isDashboard : Bool = false
     @State var isCreateUser : Bool = false
-    @State var loginResponse: Int = 200
+    @State private var showingAlert = false
     
     @State var credentials = LoginUsers(username: "", password: "")
 //    @State var username: String = ""
@@ -42,10 +42,13 @@ struct Login : View {
                         Button(action: {
                             GetLogin().login(entry: credentials) { (user_id, response) in
                                 self.user_id = user_id
-                                self.loginResponse = response
-                            }
-                            if self.loginResponse == 200 {
-                            self.isDashboard = true
+                                
+                                if response == 200 {
+                                    self.isDashboard = true
+                                }
+                                else {
+                                    self.showingAlert = true
+                                }
                             }
                             }) {
                                     Text("SIGN IN")
@@ -56,6 +59,11 @@ struct Login : View {
                                         .background(Color.green)
                                         .cornerRadius(15.0)
                             }
+                        .alert(isPresented: $showingAlert) {
+                            Alert(
+                              title: Text("Incorrect Usename or Password")
+                            )
+                          }
                     }
                     .isDetailLink(false)
                     Spacer()

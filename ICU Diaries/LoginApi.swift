@@ -123,12 +123,16 @@ class GetLogin : ObservableObject{
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            let URLresponse = try! JSONDecoder().decode(LoginResponse.self, from: data!)
-            guard let data = data else { return }
+            
             guard let response = response as? HTTPURLResponse else { return }
-            let _ = print(String(data: data, encoding: .utf8)!)
             DispatchQueue.main.async {
-                completion(URLresponse.user_id, response.statusCode)
+                if response.statusCode == 200 {
+                    let URLresponse = try! JSONDecoder().decode(LoginResponse.self, from: data!)
+                    completion(URLresponse.user_id, response.statusCode)
+                }
+                else {
+                    completion(0, response.statusCode)
+                }
             }
         }.resume()
     }
