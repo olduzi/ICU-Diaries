@@ -49,16 +49,18 @@ struct Dashboard: View {
                 VStack(alignment: .leading) {
                     HStack() {
                         Text("Good \(getTimeOfDay()) \(user_id)!")
+//                            .onAppear (
+//
+//                            )
                             .font(.largeTitle)
                             .bold()
                         Spacer()
                         NavigationLink(destination: Settings(rootIsActive: self.$rootIsActive, user_id: self.$user_id)) {
-                            Image("KennethChou")
+                            Image("Settings")
                                 .resizable()
-                                .frame(width: 100, height: 66.6)
-                                .clipShape(Circle())
-                                .overlay(Circle().stroke(Color.white, lineWidth: 2))
-                                .offset(x: -10)
+                                .frame(width: 60, height: 60)
+                                .cornerRadius(20)
+                                .offset(x: -20)
                         }
                         .isDetailLink(false)
                     }
@@ -110,12 +112,21 @@ struct Dashboard: View {
                             // Widgets
                             QuotesView()
                             Spacer()
-                            WeatherView()
+//                            WeatherView()
+                            Color(red: 0, green: 0, blue: 1)
+                                .frame(width: 353.15, height: 164.5)
+                                .cornerRadius(10)
                             Spacer()
-                            if !isHidden {
-                                NewsView()
-                            }
                             Toggle("Hide News", isOn: $isHidden)
+                                .padding(.init(top: 0, leading: 20, bottom: 5, trailing: 20))
+//                            if !isHidden {
+//                                NewsView()
+//                            }
+//                            else {
+                                Color(red: 1, green: 1, blue: 1)
+                                    .frame(width: 355.25, height: 369.95)
+                                    .cornerRadius(20)
+//                            }
                             Spacer()
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -133,7 +144,7 @@ struct Dashboard: View {
 #if DEBUG
 struct Dashboard_Previews : PreviewProvider {
     static var previews: some View {
-        Dashboard(rootIsActive: .constant(false), user_id: .constant(13))
+        Dashboard(rootIsActive: .constant(false), user_id: .constant(9))
     }
 }
 #endif

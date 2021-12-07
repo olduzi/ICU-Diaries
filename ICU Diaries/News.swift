@@ -60,12 +60,12 @@ struct NewsView: View {
         List(news) { new in
             
             VStack(alignment: .leading) {
-                
+                Spacer()
                 Text("\(new.name)")
                     .font(.headline)
                     .foregroundColor(.red)
                     .padding(.bottom)
-                Spacer()
+//                Spacer()
             }
             
         }
