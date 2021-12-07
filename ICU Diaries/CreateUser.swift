@@ -11,7 +11,7 @@ struct CreateUserView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var rootIsActive : Bool
     
-    @State private var newUser = CreateUsers(firstName: "", lastName: "", username: "", password1: "", password2: "", email: "") // initialize differently
+    @State private var newUser = User(first_name: "", last_name: "", username: "", password1: "", password2: "") // initialize differently
     @State private var user_id : Int = 0
     @State var isDashboard : Bool = false
     
@@ -36,8 +36,8 @@ struct CreateUserView: View {
         let firstPass = newUser.password1
         let secondPass = newUser.password2
         let userName = newUser.username
-        let name = newUser.firstName
-        let lastName = newUser.lastName
+        let name = newUser.first_name
+        let lastName = newUser.last_name
         if firstPass == "" || secondPass == "" || userName == "" || name == "" || lastName == "" {
             return true
         }
@@ -61,11 +61,11 @@ struct CreateUserView: View {
                         HStack(alignment: .center) {
                             Text("Name: ")
                                 .font(.title2)
-                            TextField("First", text: $newUser.firstName)
+                            TextField("First", text: $newUser.first_name)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
-                            TextField("Last", text: $newUser.lastName)
+                            TextField("Last", text: $newUser.last_name)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)

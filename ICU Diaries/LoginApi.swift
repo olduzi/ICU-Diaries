@@ -12,34 +12,17 @@ struct LoginResponse : Codable {
     var user_id : Int
 }
 
-struct LoginUsers : Codable, Identifiable {
-    let id = UUID()
+struct LoginUser : Codable {
     var username: String
     var password: String
-    
-    init(username: String, password: String) {
-        self.username = username
-        self.password = password
-    }
 }
 
-struct CreateUsers : Codable, Identifiable {
-    let id = UUID()
-    var firstName: String
-    var lastName: String
+struct User : Codable {
+    var first_name: String
+    var last_name: String
     var username: String
     var password1: String
     var password2: String
-    var email: String
-    
-    init(firstName: String, lastName: String, username: String, password1: String, password2: String, email: String) {
-        self.firstName = firstName
-        self.lastName = lastName
-        self.username = username
-        self.password1 = password1
-        self.password2 = password2
-        self.email = email
-    }
 }
 
 class GetLogin : ObservableObject{
@@ -83,13 +66,13 @@ class GetLogin : ObservableObject{
 //    }
     
     //sends data to create user
-    func createUser(entry: CreateUsers, completion:@escaping (Int) -> ()) {
+    func createUser(entry: User, completion:@escaping (Int) -> ()) {
         guard let url = URL(string: "http://68.58.243.157:8000/api/accounts/register/") else {
             print("Invalid url...")
             return
         }
         
-        let body: [String : Any] = ["firstName": entry.firstName, "lastName": entry.lastName, "username": entry.username,  "password1": entry.password1, "password2": entry.password2]
+        let body: [String : Any] = ["first_name": entry.first_name, "last_name": entry.last_name, "username": entry.username,  "password1": entry.password1, "password2": entry.password2]
         let finalBody = try! JSONSerialization.data(withJSONObject: body)
         
         var request = URLRequest(url: url)
@@ -108,7 +91,7 @@ class GetLogin : ObservableObject{
     }
     
     //sends data to create user
-    func login(entry: LoginUsers, completion:@escaping (Int, Int) -> ()) {
+    func login(entry: LoginUser, completion:@escaping (Int, Int) -> ()) {
         guard let url = URL(string: "http://68.58.243.157:8000/api/accounts/login/") else {
             print("Invalid url...")
             return

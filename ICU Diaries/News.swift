@@ -13,7 +13,7 @@ struct News: Codable {
 }
 
 struct Article:Codable, Identifiable {
-    let id = UUID()
+    var id = UUID()
     var name:String
     var url:String
     

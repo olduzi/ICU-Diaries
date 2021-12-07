@@ -12,7 +12,7 @@ struct Login : View {
     @State var isCreateUser : Bool = false
     @State private var showingAlert = false
     
-    @State var credentials = LoginUsers(username: "", password: "")
+    @State var credentials = LoginUser(username: "", password: "")
 //    @State var username: String = ""
 //    @State var password: String = ""
     @State private var user_id : Int = 0

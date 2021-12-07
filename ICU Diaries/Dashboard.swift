@@ -17,7 +17,7 @@ struct Dashboard: View {
     @Binding var rootIsActive : Bool
     @Binding var user_id : Int
     @State private var date = Date()
-    @State private var parameters = AllEntriesGivenDate(user_id: 6, date: "")
+    @State private var parameters = FetchEntriesRequest(user_id: 0, date: "")
     
     @State private var user = "Ken"
     @State private var isHidden = false
@@ -80,8 +80,8 @@ struct Dashboard: View {
                                 }
                             })
                             List(entries, id: \.id) { entry in
-                                NavigationLink(destination: DiaryEntryView(rootIsActive: self.$rootIsActive, user_id: self.$user_id, entry: entry, selectedDate: $date, userName: $user)) {
-                                    Text("\(entry.title ?? "")")
+                                NavigationLink(destination: DiaryEntryView(rootIsActive: self.$rootIsActive, user_id: self.$user_id, selectedDate: $date, userName: $user, diary_id: entry.diary_id)) {
+                                    Text("\(entry.title)")
                                 }
                             }
                                 .onAppear() {

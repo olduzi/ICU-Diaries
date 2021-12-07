@@ -13,7 +13,7 @@ struct CreateEntryView: View {
     @Binding var rootIsActive : Bool
     @Binding var user_id : Int
 
-    @State var newEntry = DiaryRequest(sender_id: 0, receiver_name: "", title: "", content: "")
+    @State var newEntry = NewEntry(sender_id: 0, receiver_name: "", title: "", content: "")
     
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)

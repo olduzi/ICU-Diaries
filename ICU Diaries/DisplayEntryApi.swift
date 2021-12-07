@@ -8,34 +8,25 @@
 import Foundation
 import SwiftUI
 
-struct AllEntriesResponse : Codable {
+struct FetchEntryResponse : Codable {
     var contents:[Entry]
 }
 
-struct AllEntriesGivenDate : Codable, Identifiable {
-    let id = UUID()
+struct FetchEntriesRequest : Codable {
     var user_id: Int
     var date: String
 }
 
-struct DiaryEntry : Codable, Identifiable {
-    let id = UUID()
-    var diary_id: Int
-    var receiver_name: String
-    var title: String
-    var content: String
-}
-
 class DisplayEntry : ObservableObject{
     
-    func allEntries(entry: AllEntriesGivenDate, completion:@escaping ([Entry]) -> ()) {
+    func allEntries(entry: FetchEntriesRequest, completion:@escaping ([Entry]) -> ()) {
         guard let url = URL(string: "http://68.58.243.157:8000/api/diary/receiver/?user_id=\(entry.user_id)&date=\(entry.date)") else {
             print("Invalid url...")
             return
         }
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-                let response = try! JSONDecoder().decode(AllEntriesResponse.self, from: data!)
+                let response = try! JSONDecoder().decode(FetchEntryResponse.self, from: data!)
                 guard let data = data else { return }
                 let _ = print(String(data: data, encoding: .utf8)!)
             DispatchQueue.main.async {
@@ -51,7 +42,7 @@ class DisplayEntry : ObservableObject{
         }
  
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            let response = try! JSONDecoder().decode(AllEntriesResponse.self, from: data!)
+            let response = try! JSONDecoder().decode(FetchEntryResponse.self, from: data!)
             guard let data = data else { return }
             let _ = print(String(data: data, encoding: .utf8)!)
             DispatchQueue.main.async {
@@ -60,13 +51,13 @@ class DisplayEntry : ObservableObject{
         }.resume()
     }
     
-    func updateEntry(entry: DiaryEntry, completion:@escaping (String) -> ()) {
+    func updateEntry(entry: Entry, completion:@escaping (String) -> ()) {
             guard let url = URL(string: "http://68.58.243.157:8000/api/diary/update/") else {
                 print("Invalid url...")
                 return
             }
 
-            let body: [String : Any] = ["diary_id": entry.diary_id, "new_receiver": entry.receiver_name, "new_title": entry.title, "new_content": entry.content]
+        let body: [String : Any] = ["diary_id": entry.diary_id, "sender_id": entry.sender_id, "receiver_id": entry.receiver_id, "title": entry.title, "content": entry.content]
             let finalBody = try! JSONSerialization.data(withJSONObject: body)
 
             var request = URLRequest(url: url)
@@ -112,7 +103,7 @@ extension Date {
 }
 
 struct DisplayEntryTest: View {
-    @State var entries = AllEntriesGivenDate(user_id: 6, date: "2021-11-09")
+    @State var entries = FetchEntriesRequest(user_id: 6, date: "2021-11-09")
     @State var content = 0
 
     var body: some View {

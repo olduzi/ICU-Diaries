@@ -12,8 +12,7 @@ struct DiaryResponse: Codable {
     var contents:[Entry]
 }
 
-struct DiaryRequest: Codable, Identifiable {
-    let id = UUID()
+struct NewEntry: Codable {
     var sender_id: Int
     var receiver_name: String
     var title: String
@@ -23,23 +22,10 @@ struct DiaryRequest: Codable, Identifiable {
 struct Entry : Codable, Identifiable {
     let id = UUID()
     var diary_id: Int
-    var receiver_id: Int
     var sender_id: Int
-    var created_time: String
-//    var modified_time: String
+    var receiver_id: Int
     var title: String
     var content: String
-    
-//    init(sender_id: Int, receiver_name: String, title: String, content: String) {
-//        self.diary_id = nil
-//        self.sender_id = nil
-//        self.receiver_id = nil
-//        self.sender_id = sender_id
-//        self.receiver_name = receiver_name
-//        self.created_time = nil
-//        self.title = title
-//        self.content = content
-//    }
 }
 
 class GetDiary : ObservableObject{
@@ -64,7 +50,7 @@ class GetDiary : ObservableObject{
     
     
     //sends a diary entry
-    func sendData(entry: DiaryRequest, completion:@escaping (String) -> ()) {
+    func sendData(entry: NewEntry, completion:@escaping (String) -> ()) {
             guard let url = URL(string: "http://68.58.243.157:8000/api/diary/new/") else {
                 print("Invalid url...")
                 return
@@ -88,7 +74,7 @@ class GetDiary : ObservableObject{
 }
 
 struct ViewDiary: View {
-    @State var entries = DiaryRequest(sender_id: 8, receiver_name: "olduzi", title: "Test Post", content: "Successful Post")
+    @State var entries = NewEntry(sender_id: 8, receiver_name: "olduzi", title: "Test Post", content: "Successful Post")
     @State var content = "hello"
 
     var body: some View {

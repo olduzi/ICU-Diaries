@@ -11,18 +11,24 @@ struct DiaryEntryView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var rootIsActive : Bool
     @Binding var user_id : Int
-    
-    @State var entry : Entry
-
     @Binding var selectedDate : Date
     @Binding var userName : String
+    @State var diary_id: Int
     
+    @State private var entry = Entry(diary_id: 0, sender_id: 0, receiver_id: 0, title: "", content: "")
     @State var entries = [Entry]()
-    @State private var parameters = AllEntriesGivenDate(user_id: 6, date: "")
+    @State private var parameters = FetchEntriesRequest(user_id: 0, date: "")
 
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)
             .ignoresSafeArea()
+            .onAppear(
+                perform: {
+                    DisplayEntry().single(diary_id: self.diary_id) {
+                    (entries) in self.entry = entries[0]
+                    }
+                }
+            )
             .overlay(
                 VStack() {
                     Text("\(userName)'s Diary")
@@ -48,7 +54,7 @@ struct DiaryEntryView: View {
                                         (entries) in self.entry = entries[0]
                                     }
                                 }) {
-                                    Text("\(entry.title ?? "")")
+                                    Text("\(entry.title)")
                                 }
 //                                .onTapGesture {
 //                                    DisplayEntry().single(diary_id: entry.diary_id) {
@@ -78,7 +84,7 @@ struct DiaryEntryView: View {
                         .frame(minWidth: 0, maxWidth: .infinity)
                         VStack() {
                             Spacer()
-                            Text("\(entry.content ?? "")")
+                            Text("\(entry.content)")
                             Spacer()
                             NavigationLink(destination: EditEntryView(rootIsActive: self.$rootIsActive, diary_id: $entry.diary_id)) {
                                 Text("Edit entry")
@@ -102,16 +108,18 @@ struct DiaryEntryView: View {
     }
 }
 
-//#if DEBUG
-//struct DiaryEntry_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DiaryEntryView(rootIsActive: .constant(false), entry: .constant(Entry(diary_id: 1, sender_id: 1, receiver_id: 1, created_time: "", title: "Message from .", content: "Hello!")), selectedDate: .constant(Date()), userName: .constant("Ken"))
-//    }
-//}
-//#endif
-
+#if DEBUG
 struct DiaryEntry_Previews: PreviewProvider {
+    var entry = Entry(diary_id: 1, sender_id: 9, receiver_id: 9, title: "December 6th Update", content: "Did well today!")
+    
     static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+        DiaryEntryView(rootIsActive: .constant(false), user_id: .constant(9), selectedDate: .constant(Date()), userName: .constant("Ken"), diary_id: 129)
     }
 }
+#endif
+
+//struct DiaryEntry_Previews: PreviewProvider {
+//    static var previews: some View {
+//        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+//    }
+//}

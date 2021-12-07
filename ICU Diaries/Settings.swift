@@ -11,7 +11,7 @@ struct Settings: View {
     @Binding var rootIsActive : Bool
     @Binding var user_id : Int
     
-    @State private var currentUser = CreateUsers(firstName: "", lastName: "", username: "", password1: "", password2: "", email: "") // initialize differently
+    @State private var currentUser = User(first_name: "", last_name: "", username: "", password1: "", password2: "") // initialize differently
     
     // @State private var currentUser = getUser(diary_id)
     
@@ -36,8 +36,8 @@ struct Settings: View {
         let firstPass = currentUser.password1
         let secondPass = currentUser.password2
         let userName = currentUser.username
-        let name = currentUser.firstName
-        let lastName = currentUser.lastName
+        let name = currentUser.first_name
+        let lastName = currentUser.last_name
         if firstPass == "" || secondPass == "" || userName == "" || name == "" || lastName == "" {
             return true
         }
@@ -74,11 +74,11 @@ struct Settings: View {
                         HStack(alignment: .center) {
                             Text("Name: ")
                                 .font(.title2)
-                            TextField("First", text: $currentUser.firstName)
+                            TextField("First", text: $currentUser.first_name)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
-                            TextField("Last", text: $currentUser.lastName)
+                            TextField("Last", text: $currentUser.last_name)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
