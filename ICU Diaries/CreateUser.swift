@@ -112,7 +112,7 @@ struct CreateUserView: View {
                                             newUser.password1 = ""
                                             newUser.password2 = ""
                                         }
-                                        else if usernameField[0] == "A user with that username already exists." {
+                                        else if usernameField != [] && usernameField[0] == "A user with that username already exists." {
                                             self.usernameError = true
                                             newUser.username = ""
                                         }
