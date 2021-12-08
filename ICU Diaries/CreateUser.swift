@@ -14,6 +14,7 @@ struct CreateUserView: View {
     @State private var newUser = User(first_name: "", last_name: "", username: "", password1: "", password2: "") // initialize differently
     @State private var user_id : Int = 0
     @State var isDashboard : Bool = false
+    @State var creationError: Bool = false
     
     func checkpassword() -> String {
         let firstPass = newUser.password1
@@ -104,7 +105,7 @@ struct CreateUserView: View {
                         HStack(alignment: .center) {
                             Text("Password: ")
                                 .font(.title2)
-                            SecureField("Password", text: $newUser.password1)
+                            TextField("Password", text: $newUser.password1)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
@@ -113,7 +114,7 @@ struct CreateUserView: View {
                         HStack(alignment: .center) {
                             Text("Confirm Password: ")
                                 .font(.title2)
-                            SecureField("Password", text: $newUser.password2)
+                            TextField("Password", text: $newUser.password2)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
@@ -125,20 +126,30 @@ struct CreateUserView: View {
                         HStack {
                             NavigationLink(destination: Dashboard(rootIsActive: self.$isDashboard, user_id: self.$user_id), isActive: self.$isDashboard) {
                                 Button(action: {
-                                    GetLogin().createUser(entry: newUser) { (user_id) in
+                                    GetLogin().createUser(entry: newUser) { (user_id, response) in
                                         self.user_id = user_id
+                                        if response == 200 {
+                                            self.isDashboard = true
+                                        }
+                                        else {
+                                            self.creationError = true
+                                        }
                                     }
-                                    self.isDashboard = true
                                     }) {
                                     Text("Save")
                                         .foregroundColor(Color.black)
                                         .font(.title2)
                                         .frame(width: 100)
                                 }
+                                .alert(isPresented: $creationError) {
+                                    Alert(
+                                      title: Text("Incorrect Usename or Password")
+                                    )
+                                  }
                                 .padding()
                                 .background(Color.white)
                                 .clipShape(Capsule())
-                                .disabled(errorCheck())
+//                                .disabled(errorCheck())
                             }
                             .isDetailLink(false)
                             Button ("Cancel", action: {self.presentationMode.wrappedValue.dismiss()})
