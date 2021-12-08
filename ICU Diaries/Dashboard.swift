@@ -112,21 +112,13 @@ struct Dashboard: View {
                             // Widgets
                             QuotesView()
                             Spacer()
-//                            WeatherView()
-                            Color(red: 0, green: 0, blue: 1)
-                                .frame(width: 353.15, height: 164.5)
-                                .cornerRadius(10)
+                            WeatherView()
                             Spacer()
                             Toggle("Hide News", isOn: $isHidden)
                                 .padding(.init(top: 0, leading: 20, bottom: 5, trailing: 20))
-//                            if !isHidden {
-//                                NewsView()
-//                            }
-//                            else {
-                                Color(red: 1, green: 1, blue: 1)
-                                    .frame(width: 355.25, height: 369.95)
-                                    .cornerRadius(20)
-//                            }
+                            if !isHidden {
+                                NewsView()
+                            }
                             Spacer()
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
