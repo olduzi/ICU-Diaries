@@ -35,7 +35,7 @@ struct EditEntryView: View {
                         Text("Title: ")
                             .font(.title2)
                             .fontWeight(.regular)
-                        TextField("", text: self.$data.title)
+                        TextField("\(data.title)", text: self.$data.title)
                             .autocapitalization(.none)
                             .font(.title2)
                             .padding(10)
@@ -52,17 +52,6 @@ struct EditEntryView: View {
                         .font(.title2)
                         .cornerRadius(10)
                         .padding(.bottom)
-//                    HStack() {
-//                        Text("Recipient: ")
-//                            .font(.title2)
-//                            .fontWeight(.regular)
-//                        TextField("", text: self.$data.receiver_name)
-//                            .font(.title2)
-//                            .padding(10)
-//                            .background(Color.white)
-//                            .cornerRadius(10)
-//                    }
-//                    .padding(.bottom)
                     Spacer()
                     Button(action: {
                         DisplayEntry().updateEntry(entry: data) { _ in }

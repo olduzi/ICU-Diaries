@@ -61,39 +61,3 @@ struct LogoutQuestionText: View {
     }
 }
 
-//struct LogoutYesButton : View {
-//    var body: some View {
-//        NavigationLink(destination: Login()) {
-//            Text("YES")
-//                .font(.headline)
-//                .foregroundColor(.white)
-//                .padding()
-//                .frame(width: 220, height: 60)
-//                .background(Color.green)
-//                .cornerRadius(15.0)
-//        }
-//        .padding()
-//    }
-//}
-//
-//
-//struct LogoutNoButton : View {
-//    var body: some View {
-//        NavigationLink(destination: Dashboard()) {
-//            Text("NO")
-//                .font(.headline)
-//                .foregroundColor(.white)
-//                .padding()
-//                .frame(width: 220, height: 60)
-//                .background(Color.green)
-//                .cornerRadius(15.0)
-//        }
-//        .padding()
-//    }
-//}
-
-//struct Logout_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Logout()
-//    }
-//}

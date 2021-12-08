@@ -11,10 +11,12 @@ struct CreateUserView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var rootIsActive : Bool
     
-    @State private var newUser = User(first_name: "", last_name: "", username: "", password1: "", password2: "") // initialize differently
+    @State private var newUser = User(first_name: "", last_name: "", username: "", password1: "", password2: "")
     @State private var user_id : Int = 0
     @State var isDashboard : Bool = false
-    @State var creationError: Bool = false
+    @State var usernameError: Bool = false
+    @State var emptyField: Bool = false
+    @State var usernameField: [String] = []
     
     func checkpassword() -> String {
         let firstPass = newUser.password1
@@ -30,23 +32,6 @@ struct CreateUserView: View {
         }
         else {
             return ""
-        }
-    }
-    
-    func errorCheck() -> Bool {
-        let firstPass = newUser.password1
-        let secondPass = newUser.password2
-        let userName = newUser.username
-        let name = newUser.first_name
-        let lastName = newUser.last_name
-        if firstPass == "" || secondPass == "" || userName == "" || name == "" || lastName == "" {
-            return true
-        }
-        else if checkpassword() == "Passwords don't match" {
-            return true
-        }
-        else {
-            return false
         }
     }
     
@@ -72,26 +57,6 @@ struct CreateUserView: View {
                                 .cornerRadius(5.0)
                         }
                         .padding(.bottom, 10)
-//                        HStack(alignment: .center) {
-//                            Text("Email: ")
-//                                .font(.title2)
-//                            TextField("Email", text: $newUser.email)
-//                                .padding()
-//                                .background(Color.white)
-//                                .cornerRadius(5.0)
-//                        }
-//                        .padding(.bottom, 10)
-//                        HStack(alignment: .center) {
-//                            Text("Profile Picture: ")
-//                                .font(.title2)
-//                            TextField("Ken.jpeg", text: $newUser.proPic)
-//                                .padding()
-//                                .background(Color.white)
-//                                .cornerRadius(5.0)
-//                            Button("Choose photo", action: {})
-//                            Spacer()
-//                        }
-//                        .padding(.bottom, 10)
                         HStack(alignment: .center) {
                             Text("Username: ")
                                 .font(.title2)
@@ -105,34 +70,54 @@ struct CreateUserView: View {
                         HStack(alignment: .center) {
                             Text("Password: ")
                                 .font(.title2)
-                            TextField("Password", text: $newUser.password1)
+                            SecureField("Password", text: $newUser.password1)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
+                        }
+                        .alert(isPresented: $usernameError) {
+                            Alert(
+                              title: Text("Username already taken")
+                            )
                         }
                         .padding(.bottom, 10)
                         HStack(alignment: .center) {
                             Text("Confirm Password: ")
                                 .font(.title2)
-                            TextField("Password", text: $newUser.password2)
+                            SecureField("Password", text: $newUser.password2)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(5.0)
                         }
+                        .alert(isPresented: $emptyField) {
+                            Alert(
+                              title: Text("Missing username and/or password")
+                            )
+                        }
+                        .padding(.bottom, 10)
                         Text("\(checkpassword())")
                             .font(.title2)
-                        .padding(.bottom, 10)
                         Spacer()
                         HStack {
                             NavigationLink(destination: Dashboard(rootIsActive: self.$isDashboard, user_id: self.$user_id), isActive: self.$isDashboard) {
                                 Button(action: {
-                                    GetLogin().createUser(entry: newUser) { (user_id, response) in
-                                        self.user_id = user_id
-                                        if response == 200 {
+                                    GetLogin().createUser(entry: newUser) { (response, statusCode) in
+                                        user_id = response.user_id ?? 0
+                                        usernameField = response.username ?? []
+                                        if statusCode == 201 {
                                             self.isDashboard = true
+                                            newUser.first_name = ""
+                                            newUser.last_name = ""
+                                            newUser.username = ""
+                                            newUser.password1 = ""
+                                            newUser.password2 = ""
+                                        }
+                                        else if usernameField[0] == "A user with that username already exists." {
+                                            self.usernameError = true
+                                            newUser.username = ""
                                         }
                                         else {
-                                            self.creationError = true
+                                            self.emptyField = true
                                         }
                                     }
                                     }) {
@@ -141,15 +126,9 @@ struct CreateUserView: View {
                                         .font(.title2)
                                         .frame(width: 100)
                                 }
-                                .alert(isPresented: $creationError) {
-                                    Alert(
-                                      title: Text("Incorrect Usename or Password")
-                                    )
-                                  }
                                 .padding()
                                 .background(Color.white)
                                 .clipShape(Capsule())
-//                                .disabled(errorCheck())
                             }
                             .isDetailLink(false)
                             Button ("Cancel", action: {self.presentationMode.wrappedValue.dismiss()})

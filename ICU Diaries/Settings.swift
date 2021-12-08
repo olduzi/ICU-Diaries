@@ -10,10 +10,9 @@ struct Settings: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var rootIsActive : Bool
     @Binding var user_id : Int
+    @State var alreadyExists: Bool = false
     
-    @State private var currentUser = User(first_name: "", last_name: "", username: "", password1: "", password2: "") // initialize differently
-    
-    // @State private var currentUser = getUser(diary_id)
+    @State private var currentUser = UpdatedUser(user_id: 0, first_name: "", last_name: "", username: "", password1: "", password2: "")
     
     func checkpassword() -> String {
         let firstPass = currentUser.password1
@@ -32,113 +31,110 @@ struct Settings: View {
         }
     }
     
-    func errorCheck() -> Bool {
-        let firstPass = currentUser.password1
-        let secondPass = currentUser.password2
-        let userName = currentUser.username
-        let name = currentUser.first_name
-        let lastName = currentUser.last_name
-        if firstPass == "" || secondPass == "" || userName == "" || name == "" || lastName == "" {
-            return true
-        }
-        else if checkpassword() == "Passwords don't match" {
-            return true
-        }
-        else {
-            return false
-        }
-    }
-    
     var body: some View {
         Color(red: 0.65, green: 0.76, blue: 0.69)
-                .ignoresSafeArea() // Ignore just for the color
-                .overlay(
-                    VStack(alignment: .leading) {
-                        HStack(alignment: .center) {
-                            Text("Edit Profile")
-                                .font(.largeTitle)
-                                .bold()
-                            Spacer()
-                            NavigationLink(destination: Logout(shouldPopToRootView: self.$rootIsActive)) {
-                                Text("Logout")
-                                    .foregroundColor(Color.black)
-                                    .font(.title2)
-                                    .frame(width: 100)
-                                    .padding()
-                                    .background(Color(red: 0.98, green: 0.49, blue: 0.49))
-                                    .clipShape(Capsule())
-                            }
-                            .isDetailLink(false)
-                        }
-                        .padding(.bottom, 10)
-                        HStack(alignment: .center) {
-                            Text("Name: ")
-                                .font(.title2)
-                            TextField("First", text: $currentUser.first_name)
-                                .padding()
-                                .background(Color.white)
-                                .cornerRadius(5.0)
-                            TextField("Last", text: $currentUser.last_name)
-                                .padding()
-                                .background(Color.white)
-                                .cornerRadius(5.0)
-                        }
-                        .padding(.bottom, 10)
-                        HStack(alignment: .center) {
-                            Text("Username: ")
-                                .font(.title2)
-                            TextField("Username", text: $currentUser.username)
-                                .autocapitalization(.none)
-                                .padding()
-                                .background(Color.white)
-                                .cornerRadius(5.0)
-                        }
-                        .padding(.bottom, 10)
-                        HStack(alignment: .center) {
-                            Text("Password: ")
-                                .font(.title2)
-                            SecureField("Password", text: $currentUser.password1)
-                                .padding()
-                                .background(Color.white)
-                                .cornerRadius(5.0)
-                        }
-                        .padding(.bottom, 10)
-                        HStack(alignment: .center) {
-                            Text("Confirm Password: ")
-                                .font(.title2)
-                            SecureField("Password", text: $currentUser.password2)
-                                .padding()
-                                .background(Color.white)
-                                .cornerRadius(5.0)
-                        }
-                        Text("\(checkpassword())")
-                        .padding(.bottom, 10)
+            .onAppear() {
+                self.currentUser.user_id = user_id
+                EditUser().getUser(user_id: user_id) { (response) in
+                    self.currentUser.first_name = response.first_name
+                    self.currentUser.last_name = response.last_name
+                    self.currentUser.username = response.username
+                }
+            }
+            .ignoresSafeArea() // Ignore just for the color
+            .overlay(
+                VStack(alignment: .leading) {
+                    HStack(alignment: .center) {
+                        Text("Edit Profile")
+                            .font(.largeTitle)
+                            .bold()
                         Spacer()
-                        HStack {
-                            Button(action: {self.presentationMode.wrappedValue.dismiss()}) {
-                                Text("Save")
-                                    .foregroundColor(Color.black)
-                                    .font(.title2)
-                                    .frame(width: 100)
-                            }
+                        NavigationLink(destination: Logout(shouldPopToRootView: self.$rootIsActive)) {
+                            Text("Logout")
+                                .foregroundColor(Color.black)
+                                .font(.title2)
+                                .frame(width: 100)
+                                .padding()
+                                .background(Color(red: 0.98, green: 0.49, blue: 0.49))
+                                .clipShape(Capsule())
+                        }
+                        .isDetailLink(false)
+                    }
+                    .padding(.bottom, 10)
+                    HStack(alignment: .center) {
+                        Text("Name: ")
+                            .font(.title2)
+                        TextField("First", text: $currentUser.first_name)
                             .padding()
                             .background(Color.white)
-                            .clipShape(Capsule())
-                            .disabled(errorCheck())
-//                            Button ("Cancel", action: {self.presentationMode.wrappedValue.dismiss()})
-//                            .foregroundColor(Color.black)
-//                            .font(.title2)
-//                            .frame(width: 100)
-//                            .padding()
-//                            .background(Color.white)
-//                            .clipShape(Capsule())
-                        }
+                            .cornerRadius(5.0)
+                        TextField("Last", text: $currentUser.last_name)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(5.0)
                     }
-                    .offset(y: -40)
-                    .padding()
-                )
-
-
+                    .padding(.bottom, 10)
+                    HStack(alignment: .center) {
+                        Text("Username: ")
+                            .font(.title2)
+                        TextField("Username", text: $currentUser.username)
+                            .autocapitalization(.none)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(5.0)
+                    }
+                    .padding(.bottom, 10)
+                    HStack(alignment: .center) {
+                        Text("New Password: ")
+                            .font(.title2)
+                        SecureField("Password", text: $currentUser.password1)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(5.0)
+                    }
+                    .padding(.bottom, 10)
+                    HStack(alignment: .center) {
+                        Text("Confirm Password: ")
+                            .font(.title2)
+                        SecureField("Password", text: $currentUser.password2)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(5.0)
+                    }
+                    .padding(.bottom, 10)
+                    Text("\(checkpassword())")
+                        .font(.title2)
+                    Spacer()
+                    HStack {
+                        Button(action: {
+                            EditUser().updateUser(entry: currentUser) { (statusCode) in
+                                if statusCode != 200 {
+                                    self.alreadyExists = true
+                                    currentUser.username = ""
+                                }
+                                else {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }
+                            }
+                        }) {
+                            Text("Save")
+                                .foregroundColor(Color.black)
+                                .font(.title2)
+                                .frame(width: 100)
+                        }
+                        .alert(isPresented: $alreadyExists) {
+                            Alert(
+                              title: Text("Username already taken")
+                            )
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .clipShape(Capsule())
+                    }
+                }
+                .offset(y: -40)
+                .padding()
+            )
     }
 }
 

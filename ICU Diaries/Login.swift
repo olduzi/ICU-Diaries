@@ -13,8 +13,7 @@ struct Login : View {
     @State private var showingAlert = false
     
     @State var credentials = LoginUser(username: "", password: "")
-//    @State var username: String = ""
-//    @State var password: String = ""
+
     @State private var user_id : Int = 0
     @EnvironmentObject var getLogin: GetLogin
     
@@ -24,6 +23,7 @@ struct Login : View {
                     .ignoresSafeArea() // Ignore just for the color
                     .overlay(
             VStack {
+                Spacer()
                 WelcomeText()
                 TextField("Username", text: $credentials.username)
                     .autocapitalization(.none)
@@ -49,6 +49,9 @@ struct Login : View {
                                 else {
                                     self.showingAlert = true
                                 }
+                                credentials.username = ""
+                                credentials.password = ""
+
                             }
                             }) {
                                     Text("SIGN IN")
@@ -61,31 +64,25 @@ struct Login : View {
                             }
                         .alert(isPresented: $showingAlert) {
                             Alert(
-                              title: Text("Incorrect Usename or Password")
+                              title: Text("Incorrect Username or Password")
                             )
                           }
                     }
                     .isDetailLink(false)
                     Spacer()
                 }
-                
-//                .simultaneousGesture(TapGesture().onEnded{
-//                    GetLogin().login(entry: credentials) { (user_id) in
-//                        self.user_id = user_id
-//                    }
-//                    credentials.username = ""
-//                    credentials.password = ""
-//                })
-                Spacer()
                 HStack() {
                     Text("New user?")
+                        .font(.title2)
                     NavigationLink(destination: CreateUserView(rootIsActive: self.$isCreateUser), isActive: self.$isCreateUser) {
                         Text("Register here!")
+                            .font(.title2)
                     }
                 }
                 .padding(.top)
+                Spacer()
+                Spacer()
             }
-//            .offset(y: -100)
             .padding()
             )
         }

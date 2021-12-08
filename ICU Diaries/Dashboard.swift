@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-struct Note: Identifiable {
-    var id = UUID()
-    var title: String
-}
-
 struct Dashboard: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var rootIsActive : Bool
@@ -19,7 +14,7 @@ struct Dashboard: View {
     @State private var date = Date()
     @State private var parameters = FetchEntriesRequest(user_id: 0, date: "")
     
-    @State private var user = "Ken"
+    @State private var user = ""
     @State private var isHidden = false
     
     func getTimeOfDay() -> String {
@@ -48,12 +43,14 @@ struct Dashboard: View {
             .overlay(
                 VStack(alignment: .leading) {
                     HStack() {
-                        Text("Good \(getTimeOfDay()) \(user_id)!")
-//                            .onAppear (
-//
-//                            )
+                        Text("Good \(getTimeOfDay()) \(user)!")
                             .font(.largeTitle)
                             .bold()
+                            .onAppear() {
+                                EditUser().getUser(user_id: user_id) { (response) in
+                                    self.user = response.first_name
+                                }
+                            }
                         Spacer()
                         NavigationLink(destination: Settings(rootIsActive: self.$rootIsActive, user_id: self.$user_id)) {
                             Image("Settings")
@@ -80,17 +77,20 @@ struct Dashboard: View {
                                 }
                             })
                             List(entries, id: \.id) { entry in
-                                NavigationLink(destination: DiaryEntryView(rootIsActive: self.$rootIsActive, user_id: self.$user_id, selectedDate: $date, userName: $user, diary_id: entry.diary_id)) {
+                                NavigationLink(destination: DiaryEntryView(rootIsActive: self.$rootIsActive, user_id: self.$user_id, selectedDate: $date, user: $user, diary_id: entry.diary_id)) {
                                     Text("\(entry.title)")
+                                        .listRowBackground(Color(red: 0.65, green: 0.76, blue: 0.69))
                                 }
                             }
-                                .onAppear() {
-                                    parameters.user_id = self.user_id
-                                    parameters.date = Date.getISOTimestamp(date: self.date)
-                                    DisplayEntry().allEntries(entry: parameters) { (entries) in
-                                        self.entries = entries
-                                    }
+                            .border(Color.black)
+                            
+                            .onAppear() {
+                                parameters.user_id = self.user_id
+                                parameters.date = Date.getISOTimestamp(date: self.date)
+                                DisplayEntry().allEntries(entry: parameters) { (entries) in
+                                    self.entries = entries
                                 }
+                            }
                             Spacer()
                             NavigationLink(destination: CreateEntryView(rootIsActive: self.$rootIsActive, user_id: self.$user_id)) {
                                 Text("Create new entry +")
@@ -102,22 +102,26 @@ struct Dashboard: View {
                                 .cornerRadius(15.0)
                             }
                             .isDetailLink(false)
-    //                                Button("Create new entry +", action: { createNote()
-    //                                })
-    //                                .buttonStyle(DefaultButtonStyle())
-    //                                .padding()
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         VStack() {
                             // Widgets
                             QuotesView()
                             Spacer()
-                            WeatherView()
+//                            WeatherView()
+                            Color(red: 0, green: 0, blue: 1)
+                                .frame(width: 353.15, height: 164.5)
+                                .cornerRadius(10)
                             Spacer()
                             Toggle("Hide News", isOn: $isHidden)
                                 .padding(.init(top: 0, leading: 20, bottom: 5, trailing: 20))
                             if !isHidden {
                                 NewsView()
+                            }
+                            else {
+                                Color(red: 0.65, green: 0.76, blue: 0.69)
+                                    .frame(width: 355.25, height: 369.95)
+                                    .cornerRadius(20)
                             }
                             Spacer()
                         }

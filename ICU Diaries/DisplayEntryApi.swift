@@ -57,7 +57,7 @@ class DisplayEntry : ObservableObject{
                 return
             }
 
-        let body: [String : Any] = ["diary_id": entry.diary_id, "sender_id": entry.sender_id, "receiver_id": entry.receiver_id, "title": entry.title, "content": entry.content]
+        let body: [String : Any] = ["diary_id": entry.diary_id, "sender_id": entry.sender_id, "receiver_id": entry.receiver_id, "new_title": entry.title, "new_content": entry.content]
             let finalBody = try! JSONSerialization.data(withJSONObject: body)
 
             var request = URLRequest(url: url)
