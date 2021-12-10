@@ -23,7 +23,6 @@ https://www.notion.so/ICU-Diary-API-Doc-51502087682d49d19b2b9419c480a37f
 
 
 ## **ICU_Diary_RESTful_API**  
-web_host: 68.58.243.157  
-database_endpoint: icudiary.c43yxbbxirw2.us-east-2.rds.amazonaws.com  
+REST API web host: 68.58.243.157:8000  
 [Github_repo](https://github.com/slingjun/ICU_Diary_REST_Services)  
 
